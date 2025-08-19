@@ -1,0 +1,23 @@
+# Development Dockerfile with hot reload
+FROM node:22-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install all dependencies (including dev dependencies)
+RUN npm ci
+
+# Install nodemon globally for hot reload
+RUN npm install -g nodemon ts-node
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start the application in development mode with hot reload
+CMD ["npm", "run", "dev"]
