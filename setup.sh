@@ -57,6 +57,18 @@ if docker-compose -f $compose_file ps | grep -q "Up"; then
     echo "   Database:    localhost:3306"
     echo ""
     
+    # Open browser automatically
+    echo "🌐 Opening application in browser..."
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        open http://localhost:4200
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        xdg-open http://localhost:4200 2>/dev/null || echo "⚠️  Please visit: http://localhost:4200"
+    elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "cygwin" ]]; then
+        start http://localhost:4200
+    else
+        echo "⚠️  Please visit: http://localhost:4200"
+    fi
+    
     echo ""
     echo "📖 View logs: docker-compose -f $compose_file logs -f"
     echo "🛑 Stop:      docker-compose -f $compose_file down"
