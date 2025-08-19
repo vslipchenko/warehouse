@@ -1,28 +1,34 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
-import {WarehouseItem} from "../../core/models/warehouseItem";
+import { Observable, map } from 'rxjs';
+import { WarehouseProduct } from '../../models/warehouseProduct';
+import { GraphqlService } from '../../services/graphql.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItemsMockService {
-  #mockedItems = [{
-    id: 1,
-    imageUrl: 'assets/logo_black.svg',
-    name: 'CloudTalk logo sticker',
-    description: 'High-quality sticker of the best cloud calling solution provider in  the world',
-    quantity: 100,
-    unitPrice: 1
-  }]
+  constructor(private graphqlService: GraphqlService) {}
 
-  constructor() { }
-
-  get items(): Observable<WarehouseItem[]> {
-    return of(this.#mockedItems)
+  get items(): Observable<WarehouseProduct[]> {
+    return this.graphqlService
+      .getProducts()
+      .pipe(map((result) => result.data.products));
   }
 
   addToShipment(id: number): void {
-    const item = this.#mockedItems.find(item => item.id === id)
-    // add to shipment logic
+    // TODO: Implement shipment logic
+    console.log(`Adding item ${id} to shipment`);
+  }
+
+  createItem(item: Omit<WarehouseProduct, 'id' | 'createdAt' | 'updatedAt'>): Observable<any> {
+    return this.graphqlService.createProduct(item);
+  }
+
+  updateItem(id: number, item: Partial<WarehouseProduct>): Observable<any> {
+    return this.graphqlService.updateProduct(id, item);
+  }
+
+  deleteItem(id: number): Observable<any> {
+    return this.graphqlService.deleteProduct(id);
   }
 }

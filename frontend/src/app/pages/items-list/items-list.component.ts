@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ListItemComponent} from "./list-item/list-item.component";
 import {Observable, of} from "rxjs";
-import {WarehouseItem} from "../../core/models/warehouseItem";
 import {ItemsMockService} from "./items.mock.service";
+import { WarehouseProduct } from '../../models/warehouseProduct';
 
 @Component({
   selector: 'app-items-list',
@@ -13,7 +13,7 @@ import {ItemsMockService} from "./items.mock.service";
   styleUrls: ['./items-list.component.scss']
 })
 export class ItemsListComponent  {
-  items$: Observable<WarehouseItem[]> = this.itemsMockService.items
+  items$: Observable<WarehouseProduct[]> = this.itemsMockService.items
 
   constructor(private itemsMockService: ItemsMockService) { }
 
