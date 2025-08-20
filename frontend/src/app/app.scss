@@ -1,5 +1,9 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .content {
   padding: 20px;
-  margin-left: auto;
-  margin-right: auto;
 }

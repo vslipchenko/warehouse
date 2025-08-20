@@ -33,3 +33,10 @@
 .social-logo:hover {
   fill: #10b981;
 }
+
+@media all and (max-width: 450px) {
+  // Do not show social panel on mobile/narrow screen devices
+  .social-panel {
+    display: none;
+  }
+}
