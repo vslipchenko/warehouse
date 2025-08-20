@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { Button } from 'primeng/button';
 
 @Component({
@@ -8,4 +8,6 @@ import { Button } from 'primeng/button';
   styleUrl: './headline.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeadlineComponent {}
+export class HeadlineComponent {
+  public readonly addProduct = output<void>();
+}
