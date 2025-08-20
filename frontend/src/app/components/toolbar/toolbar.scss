@@ -1,6 +1,7 @@
 .toolbar {
   border-radius: 3rem;
   padding: 1rem 1rem 1rem 1.5rem;
+  margin: 15px;
 }
 
 .brand {
@@ -15,8 +16,8 @@
 }
 
 .name {
-  font-weight: 600;
   font-size: 1.5rem;
+  color: black;
 }
 
 .social-panel {
@@ -30,7 +31,5 @@
 }
 
 .social-logo:hover {
-  $logo-color: #43a047;
-
-  fill: $logo-color;
+  fill: #10b981;
 }
