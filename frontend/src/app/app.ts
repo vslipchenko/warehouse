@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Toolbar } from 'primeng/toolbar';
+import { ToolbarComponent } from './components/toolbar/toolbar';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
-  imports: [RouterOutlet, Toolbar],
+  imports: [RouterOutlet, ToolbarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
+export class AppComponent {
   title = 'warehouse';
 }
