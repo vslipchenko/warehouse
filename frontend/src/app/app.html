@@ -1,7 +1,8 @@
 <app-toolbar/>
 
 <main class="content">
-  <app-headline/>
+  <app-headline (addProduct)="openAddProductDialog()"/>
+  <app-add-product-dialog [visible]="showAddProductDialog"/>
 
   <app-table></app-table>
 </main>
