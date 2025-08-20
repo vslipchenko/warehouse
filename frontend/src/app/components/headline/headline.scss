@@ -1,0 +1,13 @@
+.headline {
+  background: linear-gradient(217deg, #10b981, rgba(#10b981, 0) 100%);
+  border-left: 5px solid #43a047;
+  padding: 20px;
+  border-end-end-radius: 10px;
+  border-start-end-radius: 10px;
+}
+
+.add-product {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 20px;
+}
