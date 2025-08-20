@@ -3,7 +3,7 @@ import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import Aura from '@primeuix/themes/aura';
 
-export const appConfig: ApplicationConfig = {
+export const config: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),
     providePrimeNG({
