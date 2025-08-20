@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { gql } from '@apollo/client/core';
 import { Observable } from 'rxjs';
-import { WarehouseProduct } from '../models/warehouseProduct';
+import { Product } from '../models/product';
 
 export interface CreateProductInput {
   name: string;
@@ -29,7 +29,7 @@ export class GraphqlService {
   /**
    * Get all products
    */
-  getProducts(): Observable<{ data: { products: WarehouseProduct[] } }> {
+  getProducts(): Observable<{ data: { products: Product[] } }> {
     const GET_PRODUCTS = gql`
       query GetProducts {
         products {
@@ -44,7 +44,7 @@ export class GraphqlService {
       }
     `;
 
-    return this.apollo.watchQuery<{ products: WarehouseProduct[] }>({
+    return this.apollo.watchQuery<{ products: Product[] }>({
       query: GET_PRODUCTS,
     }).valueChanges;
   }
@@ -52,7 +52,7 @@ export class GraphqlService {
   /**
    * Get a single product by ID
    */
-  getProduct(id: number): Observable<{ data: { product: WarehouseProduct } }> {
+  getProduct(id: number): Observable<{ data: { product: Product } }> {
     const GET_PRODUCT = gql`
       query GetProduct($id: ID!) {
         product(id: $id) {
@@ -67,7 +67,7 @@ export class GraphqlService {
       }
     `;
 
-    return this.apollo.watchQuery<{ product: WarehouseProduct }>({
+    return this.apollo.watchQuery<{ product: Product }>({
       query: GET_PRODUCT,
       variables: { id },
     }).valueChanges;
@@ -101,10 +101,7 @@ export class GraphqlService {
   /**
    * Update an existing product
    */
-  updateProduct(
-    id: number,
-    input: UpdateProductInput
-  ): Observable<any> {
+  updateProduct(id: number, input: UpdateProductInput): Observable<any> {
     const UPDATE_PRODUCT = gql`
       mutation UpdateProduct($id: ID!, $input: UpdateProductInput!) {
         updateProduct(id: $id, input: $input) {
@@ -143,4 +140,3 @@ export class GraphqlService {
     });
   }
 }
-
