@@ -6,10 +6,13 @@ import {
 } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
 import { Button } from 'primeng/button';
+import { InputText } from 'primeng/inputtext';
+import { Textarea } from 'primeng/textarea';
+import { InputNumber } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-add-product-dialog',
-  imports: [Dialog, Button],
+  imports: [Dialog, Button, InputText, Textarea, InputNumber],
   templateUrl: './add-product-dialog.html',
   styleUrl: './add-product-dialog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

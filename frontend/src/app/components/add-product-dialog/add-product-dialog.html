@@ -1,7 +1,26 @@
-<p-dialog header="Add Product" [modal]="true" [draggable]="false" [(visible)]="show">
-  TODO
+<p-dialog [style]="{ 'min-width': '35vw' }" header="Add Product" [modal]="true" [draggable]="false"
+          [(visible)]="show">
+  <div class="input-group">
+    <label for="name">Name</label>
+    <input pInputText id="name" class="flex-auto" autocomplete="off"/>
+  </div>
 
-  <div>
+  <div class="input-group">
+    <label for="quantity">Quantity</label>
+    <input pInputText id="quantity" class="flex-auto" autocomplete="off"/>
+  </div>
+
+  <div class="input-group">
+    <label for="unitPrice">Unit Price</label>
+    <p-inputnumber inputId="unitPrice" mode="currency" currency="USD" locale="en-US"/>
+  </div>
+
+  <div class="input-group">
+    <label for="description">Description</label>
+    <textarea pTextarea id="description" rows="5" cols="30"></textarea>
+  </div>
+
+  <div class="action-buttons">
     <p-button label="Cancel" severity="secondary" (click)="visible().set(false)"/>
     <p-button label="Save" (click)="visible().set(false)"/>
   </div>

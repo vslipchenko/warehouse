@@ -1,0 +1,12 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: end;
+  gap: 15px;
+  margin-top: 30px;
+}
