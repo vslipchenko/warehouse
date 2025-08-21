@@ -5,5 +5,13 @@
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 20px;
+}
+
+.spinner {
+  margin-top: auto;
+  margin-bottom: auto;
 }
