@@ -1,10 +1,14 @@
 <app-toolbar/>
 
 <main class="content">
-  <app-headline (addProduct)="openAddProductDialog()"/>
+  <app-headline [addProductButtonDisabled]="loading()" (addProduct)="openAddProductDialog()"/>
   <app-add-product-dialog [visible]="showAddProductDialog"/>
 
-  <app-table></app-table>
+  @if (loading()) {
+    <p-progress-spinner ariaLabel="Loading products..." class="spinner"/>
+  } @else {
+    <app-table [products]="products()"></app-table>
+  }
 </main>
 
 <app-footer/>
