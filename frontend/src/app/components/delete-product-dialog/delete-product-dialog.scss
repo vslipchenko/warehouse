@@ -1,5 +1,6 @@
 .text {
   margin-bottom: 15px;
+  max-width: calc(100vw - 56px - var(--p-overlay-modal-padding) * 2);
 }
 
 .action-buttons {
