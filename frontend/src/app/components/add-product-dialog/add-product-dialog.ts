@@ -70,11 +70,11 @@ export class AddProductDialogComponent {
   private readonly untilDestroyed = untilDestroyed();
   private readonly graphqlService = inject(GraphqlService);
 
-  get show(): boolean {
+  protected get show(): boolean {
     return this.visible()();
   }
 
-  set show(visible: boolean) {
+  protected set show(visible: boolean) {
     this.visible().set(visible);
   }
 
