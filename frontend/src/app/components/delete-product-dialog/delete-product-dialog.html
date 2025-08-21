@@ -8,6 +8,6 @@
   <div class="action-buttons">
     <p-button label="Cancel" severity="secondary" (click)="visible().set(false)"/>
     <p-button [label]="loading() ? 'Deleting...' : 'Delete'" (click)="deleteProduct(product().id)"
-              [disabled]="loading()"/>
+              [disabled]="loading()" severity="danger"/>
   </div>
 </p-dialog>
