@@ -16,7 +16,7 @@ export interface UpdateProductInput {
   name?: string;
   quantity?: number;
   unitPrice?: number;
-  description?: string;
+  description?: string | null;
   // imageUrl?: string;
 }
 
