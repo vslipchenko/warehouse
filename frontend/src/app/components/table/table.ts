@@ -32,4 +32,13 @@ export class TableComponent {
   protected filterProducts(table: Table<Product>, event: Event): void {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
+
+  protected get columns(): Array<{ field: string; header: string }> {
+    return [
+      { field: 'name', header: 'Name' },
+      { field: 'quantity', header: 'Quantity' },
+      { field: 'unitPrice', header: 'Unit Price' },
+      { field: 'description', header: 'Description' },
+    ];
+  }
 }
