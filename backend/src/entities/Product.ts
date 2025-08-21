@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Field, Float, ID, Int, ObjectType } from 'type-graphql';
-import { IsNotEmpty, IsPositive, MaxLength, Min } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsPositive, MaxLength, Min } from 'class-validator';
 import {
   PRODUCT_DESCRIPTION_MAX_LENGTH,
   PRODUCT_NAME_MAX_LENGTH,
