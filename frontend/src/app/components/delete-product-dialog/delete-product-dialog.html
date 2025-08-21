@@ -1,0 +1,10 @@
+<p-dialog [style]="{ 'min-width': '30vw' }" header="Delete Product" [modal]="true" [draggable]="false"
+          [(visible)]="show">
+
+  <p>Are you sure you want to delete the product <strong>{{ productName() }}</strong>?</p>
+
+  <div class="action-buttons">
+    <p-button label="Cancel" severity="secondary" (click)="visible().set(false)"/>
+    <p-button [label]="loading() ? 'Deleting...' : 'Delete'" (click)="deleteProduct()" [disabled]="loading()"/>
+  </div>
+</p-dialog>
