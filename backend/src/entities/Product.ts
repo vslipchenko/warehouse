@@ -53,7 +53,7 @@ export class Product {
   @CreateDateColumn()
   createdAt!: Date;
 
-  @Field()
-  @UpdateDateColumn()
-  updatedAt!: Date;
+  @Field({ nullable: true })
+  @UpdateDateColumn({ nullable: true })
+  updatedAt?: Date;
 }
