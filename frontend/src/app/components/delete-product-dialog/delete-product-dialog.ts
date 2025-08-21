@@ -47,7 +47,7 @@ export class DeleteProductDialogComponent {
       .pipe(
         this.untilDestroyed(),
         catchError((error) => {
-          console.error('Error creating product:', error);
+          console.error('Error deleting product:', error);
 
           this.error.set(true);
 
