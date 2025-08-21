@@ -6,8 +6,12 @@
 
   @if (loading()) {
     <p-progress-spinner ariaLabel="Loading products..." class="spinner"/>
+  } @else if (error()) {
+    <app-error-banner [visible]="error()" message="Can't load the products.">
+      <p-button label="Retry" icon="pi pi-undo" iconPos="left" (click)="loadProducts()"></p-button>
+    </app-error-banner>
   } @else {
-    <app-table [products]="products()"></app-table>
+    <app-table [products]="products()"/>
   }
 </main>
 
