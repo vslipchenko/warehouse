@@ -18,6 +18,6 @@ import { Tooltip } from 'primeng/tooltip';
 })
 export class TableComponent {
   public readonly products = input.required<Array<Product>>();
-  public readonly editProduct = output<void>();
+  public readonly editProduct = output<Product>();
   public readonly deleteProduct = output<Product>();
 }
