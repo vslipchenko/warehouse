@@ -42,7 +42,7 @@ export class AppComponent {
   protected readonly showAddProductDialog = signal(false);
   protected readonly showEditProductDialog = signal(false);
   protected readonly showDeleteProductDialog = signal(false);
-  protected readonly productToDelete = signal<Product>({} as Product);
+  protected readonly affectedProduct = signal<Product>({} as Product);
   protected readonly products = signal<Array<Product>>([]);
   private readonly graphqlService = inject(GraphqlService);
 
@@ -54,8 +54,14 @@ export class AppComponent {
     this.showAddProductDialog.set(true);
   }
 
-  protected openEditProductDialog(): void {
+  protected openEditProductDialog(product: Product): void {
     this.showEditProductDialog.set(true);
+    this.affectedProduct.set(product);
+  }
+
+  protected confirmDeletion(product: Product): void {
+    this.showDeleteProductDialog.set(true);
+    this.affectedProduct.set(product);
   }
 
   protected loadProducts(): void {
@@ -83,10 +89,5 @@ export class AppComponent {
           this.products.set(response.data.products);
         },
       });
-  }
-
-  protected confirmDeletion(product: Product): void {
-    this.showDeleteProductDialog.set(true);
-    this.productToDelete.set(product);
   }
 }
