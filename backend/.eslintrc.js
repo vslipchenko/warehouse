@@ -24,6 +24,13 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
     'require-jsdoc': 'off',
     'valid-jsdoc': 'off',
+    'new-cap': [
+      'error',
+      {
+        capIsNew: false,
+        newIsCap: true,
+        properties: false,
+      },
+    ],
   },
 };
-
