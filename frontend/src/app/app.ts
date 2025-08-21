@@ -15,6 +15,7 @@ import { Product } from './models/product';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { ErrorBannerComponent } from './components/error-banner/error-banner';
 import { Button } from 'primeng/button';
+import { DeleteProductDialogComponent } from './components/delete-product-dialog/delete-product-dialog';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,7 @@ import { Button } from 'primeng/button';
     ProgressSpinner,
     ErrorBannerComponent,
     Button,
+    DeleteProductDialogComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -36,6 +38,8 @@ export class AppComponent {
   protected readonly loading = signal(false);
   protected readonly error = signal(false);
   protected readonly showAddProductDialog = signal(false);
+  protected readonly showDeleteProductDialog = signal(false);
+  protected readonly productNameToDelete = signal('');
   protected readonly products = signal<Array<Product>>([]);
   private readonly graphqlService = inject(GraphqlService);
 
@@ -72,5 +76,10 @@ export class AppComponent {
           this.products.set(response.data.products);
         },
       });
+  }
+
+  protected confirmDeletion(productName: string): void {
+    this.showDeleteProductDialog.set(true);
+    this.productNameToDelete.set(productName);
   }
 }
