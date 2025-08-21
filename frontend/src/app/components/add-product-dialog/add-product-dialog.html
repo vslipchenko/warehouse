@@ -1,4 +1,5 @@
 @let nameControl = form.controls.name;
+@let descriptionControl = form.controls.description;
 
 <p-dialog [style]="{ 'min-width': '35vw' }" header="Add Product" [modal]="true" [draggable]="false"
           [(visible)]="show">
@@ -14,7 +15,7 @@
           Name is required.
         }
         @if (nameControl.hasError('maxlength')) {
-          Name length must not exceed {{ nameMaxLength }} characters.
+          Name length must not exceed {{ nameMaxLength }} characters (currently - {{ nameControl.value?.length }}).
         }
       </p-message>
     }
@@ -43,6 +44,13 @@
   <div class="input-group">
     <label for="description">Description</label>
     <textarea pTextarea id="description" rows="5" cols="30" [formControl]="form.controls.description"></textarea>
+    @if (descriptionControl.dirty && descriptionControl.invalid) {
+      <p-message severity="error" size="small" variant="simple" class="error-message">
+        @if (descriptionControl.hasError('maxlength')) {
+          Description length must not exceed {{ descriptionMaxLength }} characters (currently - {{ descriptionControl.value?.length }}).
+        }
+      </p-message>
+    }
   </div>
 
   <app-error-banner [visible]="error()" message="Can't add the product. Please try again later."/>

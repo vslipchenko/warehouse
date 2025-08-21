@@ -53,6 +53,7 @@ export class AddProductDialogComponent {
   protected readonly loading = signal(false);
   protected readonly error = signal(false);
   protected readonly nameMaxLength = PRODUCT_NAME_MAX_LENGTH;
+  protected readonly descriptionMaxLength = PRODUCT_DESCRIPTION_MAX_LENGTH;
   protected readonly quantityMaxValue = UNSIGNED_INTEGER_MAX_VALUE;
   protected readonly unitPriceMaxValue = DECIMAL_MAX_VALUE;
   protected readonly form = new FormGroup({
