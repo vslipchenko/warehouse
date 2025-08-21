@@ -3,7 +3,7 @@
 <main class="content">
   <app-headline [addProductButtonDisabled]="loading()" (addProduct)="openAddProductDialog()"/>
   <app-add-product-dialog [visible]="showAddProductDialog"/>
-  <app-delete-product-dialog [visible]="showDeleteProductDialog" [productName]="productNameToDelete()"/>
+  <app-delete-product-dialog [visible]="showDeleteProductDialog" [product]="productToDelete()"/>
 
   @if (loading()) {
     <p-progress-spinner ariaLabel="Loading products..." class="spinner"/>

@@ -39,7 +39,7 @@ export class AppComponent {
   protected readonly error = signal(false);
   protected readonly showAddProductDialog = signal(false);
   protected readonly showDeleteProductDialog = signal(false);
-  protected readonly productNameToDelete = signal('');
+  protected readonly productToDelete = signal<Product>({} as Product);
   protected readonly products = signal<Array<Product>>([]);
   private readonly graphqlService = inject(GraphqlService);
 
@@ -78,8 +78,8 @@ export class AppComponent {
       });
   }
 
-  protected confirmDeletion(productName: string): void {
+  protected confirmDeletion(product: Product): void {
     this.showDeleteProductDialog.set(true);
-    this.productNameToDelete.set(productName);
+    this.productToDelete.set(product);
   }
 }
