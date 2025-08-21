@@ -28,6 +28,7 @@ import {
   GraphqlService,
 } from '../../services/graphql.service';
 import { catchError, finalize, of } from 'rxjs';
+import { untilDestroyed } from '../../utilities/operator';
 
 @Component({
   selector: 'app-add-product-dialog',
@@ -62,6 +63,7 @@ export class AddProductDialogComponent {
       Validators.maxLength(PRODUCT_DESCRIPTION_MAX_LENGTH),
     ]),
   });
+  private readonly untilDestroyed = untilDestroyed();
   private readonly graphqlService = inject(GraphqlService);
 
   get show(): boolean {
@@ -90,9 +92,10 @@ export class AddProductDialogComponent {
     this.graphqlService
       .createProduct(productInput)
       .pipe(
+        this.untilDestroyed(),
         catchError((error) => {
           console.error('Error creating product:', error);
-          
+
           return of(null);
         }),
         finalize(() => {
