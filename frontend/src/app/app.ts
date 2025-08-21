@@ -13,6 +13,8 @@ import { GraphqlService } from './services/graphql.service';
 import { catchError, of, tap } from 'rxjs';
 import { Product } from './models/product';
 import { ProgressSpinner } from 'primeng/progressspinner';
+import { ErrorBannerComponent } from './components/error-banner/error-banner';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-root',
@@ -25,11 +27,14 @@ import { ProgressSpinner } from 'primeng/progressspinner';
     HeadlineComponent,
     AddProductDialogComponent,
     ProgressSpinner,
+    ErrorBannerComponent,
+    Button,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   protected readonly loading = signal(false);
+  protected readonly error = signal(false);
   protected readonly showAddProductDialog = signal(false);
   protected readonly products = signal<Array<Product>>([]);
   private readonly graphqlService = inject(GraphqlService);
@@ -42,7 +47,8 @@ export class AppComponent {
     this.showAddProductDialog.set(true);
   }
 
-  private loadProducts(): void {
+  protected loadProducts(): void {
+    this.error.set(false);
     this.loading.set(true);
 
     this.graphqlService
@@ -53,6 +59,8 @@ export class AppComponent {
         }),
         catchError((error) => {
           console.error('Error loading products:', error);
+
+          this.error.set(true);
 
           return of({ data: { products: [] } });
         })
