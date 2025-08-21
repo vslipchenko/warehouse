@@ -81,11 +81,11 @@ export class EditProductDialogComponent {
     });
   }
 
-  get show(): boolean {
+  protected get show(): boolean {
     return this.visible()();
   }
 
-  set show(visible: boolean) {
+  protected set show(visible: boolean) {
     this.visible().set(visible);
   }
 
