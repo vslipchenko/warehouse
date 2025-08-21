@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { Button } from 'primeng/button';
 
 @Component({
@@ -9,5 +14,6 @@ import { Button } from 'primeng/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeadlineComponent {
+  public readonly addProductButtonDisabled = input.required<boolean>();
   public readonly addProduct = output<void>();
 }
