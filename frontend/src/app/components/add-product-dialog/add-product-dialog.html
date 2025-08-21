@@ -1,14 +1,30 @@
+@let nameControl = form.controls.name;
+
 <p-dialog [style]="{ 'min-width': '35vw' }" header="Add Product" [modal]="true" [draggable]="false"
           [(visible)]="show">
   <div class="input-group">
     <label for="name">Name</label>
-    <input pInputText id="name" class="flex-auto" autocomplete="off"/>
+    <input pInputText id="name" class="flex-auto" autocomplete="off"
+           [invalid]="nameControl.dirty && nameControl.invalid"
+           [formControl]="nameControl"/>
+
+    @if (nameControl.dirty && nameControl.invalid) {
+      <p-message severity="error" size="small" variant="simple" class="error-message">
+        @if (nameControl.hasError('required')) {
+          Name is required.
+        }
+        @if (nameControl.hasError('maxlength')) {
+          Name length must not exceed {{ nameMaxLength }} characters.
+        }
+      </p-message>
+    }
   </div>
 
   <div class="input-group">
     <label for="quantity">Quantity</label>
-    <p-inputnumber [showButtons]="true" buttonLayout="horizontal" inputId="quantity" [min]="0" pinnerMode="horizontal"
-                   [step]="1" mode="decimal">
+    <p-inputnumber [showButtons]="true" buttonLayout="horizontal" inputId="quantity" [min]="0" [max]="quantityMaxValue"
+                   pinnerMode="horizontal"
+                   [step]="1" mode="decimal" [formControl]="form.controls.quantity">
       <ng-template #incrementbuttonicon>
         <span class="pi pi-plus"></span>
       </ng-template>
@@ -20,16 +36,17 @@
 
   <div class="input-group">
     <label for="unitPrice">Unit Price</label>
-    <p-inputnumber inputId="unitPrice" mode="currency" currency="USD" locale="en-US" [min]="0"/>
+    <p-inputnumber inputId="unitPrice" mode="currency" currency="USD" locale="en-US" [min]="0" [max]="unitPriceMaxValue"
+                   [formControl]="form.controls.unitPrice"/>
   </div>
 
   <div class="input-group">
     <label for="description">Description</label>
-    <textarea pTextarea id="description" rows="5" cols="30"></textarea>
+    <textarea pTextarea id="description" rows="5" cols="30" [formControl]="form.controls.description"></textarea>
   </div>
 
   <div class="action-buttons">
-    <p-button label="Cancel" severity="secondary" (click)="visible().set(false)"/>
-    <p-button label="Add" (click)="visible().set(false)"/>
+    <p-button label="Close" severity="secondary" (click)="visible().set(false)"/>
+    <p-button [label]="addButtonLabel" (click)="addProduct()" [disabled]="disableAddButton"/>
   </div>
 </p-dialog>
