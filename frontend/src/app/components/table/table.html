@@ -1,7 +1,7 @@
 <p-table
   [value]="products()"
   [paginator]="true"
-  [rows]="15"
+  [rows]="10"
   [rowsPerPageOptions]="[5, 10, 15, 20]"
 >
   <ng-template #header>
@@ -18,7 +18,7 @@
       <td>{{ product.name }}</td>
       <td>{{ product.quantity }}</td>
       <td>{{ product.unitPrice }}</td>
-      <td>{{ product.description }}</td>
+      <td class="description-column">{{ product.description }}</td>
       <td>
         <div class="action-buttons">
           <p-button
