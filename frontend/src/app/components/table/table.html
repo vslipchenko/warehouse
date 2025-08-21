@@ -7,9 +7,10 @@
   <ng-template #header>
     <tr>
       <th style="width:25%">Name</th>
-      <th style="width:25%">Quantity</th>
+      <th style="width:15%">Quantity</th>
       <th style="width:25%">Unit Price</th>
-      <th style="width:25%">Description</th>
+      <th style="width:30%">Description</th>
+      <th style="width:5%">Actions</th>
     </tr>
   </ng-template>
   <ng-template #body let-product>
@@ -18,6 +19,26 @@
       <td>{{ product.quantity }}</td>
       <td>{{ product.unitPrice }}</td>
       <td>{{ product.description }}</td>
+      <td>
+        <div class="action-buttons">
+          <p-button
+            icon="pi pi-pencil"
+            severity="secondary"
+            size="small"
+            (click)="editProduct.emit()"
+            pTooltip="Edit Product"
+            tooltipPosition="left">
+          </p-button>
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            size="small"
+            (click)="deleteProduct.emit()"
+            pTooltip="Delete Product"
+            tooltipPosition="left">
+          </p-button>
+        </div>
+      </td>
     </tr>
   </ng-template>
 </p-table>
