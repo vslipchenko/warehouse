@@ -50,30 +50,6 @@ export class GraphqlService {
   }
 
   /**
-   * Get a single product by ID
-   */
-  getProduct(id: number): Observable<{ data: { product: Product } }> {
-    const GET_PRODUCT = gql`
-      query GetProduct($id: ID!) {
-        product(id: $id) {
-          id
-          name
-          quantity
-          unitPrice
-          description
-          createdAt
-          updatedAt
-        }
-      }
-    `;
-
-    return this.apollo.watchQuery<{ product: Product }>({
-      query: GET_PRODUCT,
-      variables: { id },
-    }).valueChanges;
-  }
-
-  /**
    * Create a new product
    */
   createProduct(input: CreateProductInput): Observable<any> {
