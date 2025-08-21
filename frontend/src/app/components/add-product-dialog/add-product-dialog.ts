@@ -3,6 +3,7 @@ import {
   Component,
   inject,
   input,
+  signal,
   WritableSignal,
 } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
@@ -29,6 +30,7 @@ import {
 } from '../../services/graphql.service';
 import { catchError, finalize, of } from 'rxjs';
 import { untilDestroyed } from '../../utilities/operator';
+import { ErrorBannerComponent } from '../error-banner/error-banner';
 
 @Component({
   selector: 'app-add-product-dialog',
@@ -40,6 +42,7 @@ import { untilDestroyed } from '../../utilities/operator';
     InputNumber,
     ReactiveFormsModule,
     Message,
+    ErrorBannerComponent,
   ],
   templateUrl: './add-product-dialog.html',
   styleUrl: './add-product-dialog.scss',
@@ -47,11 +50,11 @@ import { untilDestroyed } from '../../utilities/operator';
 })
 export class AddProductDialogComponent {
   public readonly visible = input.required<WritableSignal<boolean>>();
-  protected disableAddButton = false;
-  protected addButtonLabel = 'Add';
-  protected nameMaxLength = PRODUCT_NAME_MAX_LENGTH;
-  protected quantityMaxValue = UNSIGNED_INTEGER_MAX_VALUE;
-  protected unitPriceMaxValue = DECIMAL_MAX_VALUE;
+  protected readonly loading = signal(false);
+  protected readonly error = signal(false);
+  protected readonly nameMaxLength = PRODUCT_NAME_MAX_LENGTH;
+  protected readonly quantityMaxValue = UNSIGNED_INTEGER_MAX_VALUE;
+  protected readonly unitPriceMaxValue = DECIMAL_MAX_VALUE;
   protected readonly form = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -79,8 +82,8 @@ export class AddProductDialogComponent {
 
     if (this.form.invalid) return;
 
-    this.disableAddButton = true;
-    this.addButtonLabel = 'Adding...';
+    this.error.set(false);
+    this.loading.set(true);
 
     const productInput: CreateProductInput = {
       name: this.form.controls.name.value!,
@@ -96,11 +99,12 @@ export class AddProductDialogComponent {
         catchError((error) => {
           console.error('Error creating product:', error);
 
+          this.error.set(true);
+
           return of(null);
         }),
         finalize(() => {
-          this.disableAddButton = false;
-          this.addButtonLabel = 'Add';
+          this.loading.set(false);
         })
       )
       .subscribe({
