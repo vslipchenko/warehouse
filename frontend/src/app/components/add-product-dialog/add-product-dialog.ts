@@ -83,6 +83,8 @@ export class AddProductDialogComponent {
 
     if (this.form.invalid) return;
 
+    this.form.disable();
+
     this.error.set(false);
     this.loading.set(true);
 
@@ -105,6 +107,8 @@ export class AddProductDialogComponent {
           return of(null);
         }),
         finalize(() => {
+          this.form.enable();
+
           this.loading.set(false);
         })
       )
