@@ -8,7 +8,7 @@ export const AppDataSource = new DataSource({
   username: process.env['DB_USERNAME'] || 'warehouse',
   password: process.env['DB_PASSWORD'] || 'warehousepassword',
   database: process.env['DB_DATABASE'] || 'warehouse',
-  synchronize: process.env['NODE_ENV'] !== 'production',
+  synchronize: true,
   logging: process.env['NODE_ENV'] === 'development',
   entities: [Product],
   migrations: ['src/migrations/**/*.ts'],
