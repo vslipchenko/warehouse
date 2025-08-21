@@ -33,7 +33,7 @@
             icon="pi pi-trash"
             severity="danger"
             size="small"
-            (click)="deleteProduct.emit()"
+            (click)="deleteProduct.emit(product.name)"
             pTooltip="Delete Product"
             tooltipPosition="left">
           </p-button>
