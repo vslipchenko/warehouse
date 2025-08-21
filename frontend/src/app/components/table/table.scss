@@ -1,6 +1,8 @@
 .caption {
   display: flex;
   justify-content: end;
+  align-items: center;
+  gap: 20px;
 }
 
 .action-buttons {
@@ -17,4 +19,11 @@
 .empty-message {
   color: gray;
   text-align: center;
+}
+
+@media all and (max-width: 420px) {
+  // Shrink search input on mobile/narrow screen devices
+  .search {
+    max-width: 180px;
+  }
 }
