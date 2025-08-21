@@ -16,6 +16,7 @@ import { ProgressSpinner } from 'primeng/progressspinner';
 import { ErrorBannerComponent } from './components/error-banner/error-banner';
 import { Button } from 'primeng/button';
 import { DeleteProductDialogComponent } from './components/delete-product-dialog/delete-product-dialog';
+import { EditProductDialogComponent } from './components/edit-product-dialog/edit-product-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ import { DeleteProductDialogComponent } from './components/delete-product-dialog
     ErrorBannerComponent,
     Button,
     DeleteProductDialogComponent,
+    EditProductDialogComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -38,6 +40,7 @@ export class AppComponent {
   protected readonly loading = signal(false);
   protected readonly error = signal(false);
   protected readonly showAddProductDialog = signal(false);
+  protected readonly showEditProductDialog = signal(false);
   protected readonly showDeleteProductDialog = signal(false);
   protected readonly productToDelete = signal<Product>({} as Product);
   protected readonly products = signal<Array<Product>>([]);
@@ -49,6 +52,10 @@ export class AppComponent {
 
   protected openAddProductDialog(): void {
     this.showAddProductDialog.set(true);
+  }
+
+  protected openEditProductDialog(): void {
+    this.showEditProductDialog.set(true);
   }
 
   protected loadProducts(): void {
