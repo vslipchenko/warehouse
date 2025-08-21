@@ -2,7 +2,7 @@
 @let descriptionControl = form.controls.description;
 
 <p-dialog [style]="{ 'min-width': '35vw' }" header="Add Product" [modal]="true" [draggable]="false"
-          [(visible)]="show">
+          [(visible)]="show" (onHide)="resetState()">
   <div class="input-group">
     <label for="name">Name</label>
     <input pInputText id="name" class="flex-auto" autocomplete="off"

@@ -116,4 +116,12 @@ export class AddProductDialogComponent {
         },
       });
   }
+
+  protected resetState(): void {
+    this.form.reset();
+    this.form.markAsPristine();
+    this.form.markAsUntouched();
+    this.error.set(false);
+    this.loading.set(false);
+  }
 }
