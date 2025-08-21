@@ -12,10 +12,19 @@ import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
 import { InputText } from 'primeng/inputtext';
 import { FilterMetadata } from 'primeng/api';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-table',
-  imports: [TableModule, Button, Tooltip, IconField, InputIcon, InputText],
+  imports: [
+    TableModule,
+    Button,
+    Tooltip,
+    IconField,
+    InputIcon,
+    InputText,
+    CurrencyPipe,
+  ],
   templateUrl: './table.html',
   styleUrl: './table.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
