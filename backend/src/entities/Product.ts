@@ -44,11 +44,6 @@ export class Product {
   @MaxLength(PRODUCT_DESCRIPTION_MAX_LENGTH)
   description?: string;
 
-  // @Field({ nullable: true })
-  // @Column({ length: 500, nullable: true })
-  // @MaxLength(500)
-  // imageUrl?: string;
-
   @Field()
   @CreateDateColumn()
   createdAt!: Date;

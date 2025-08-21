@@ -4,7 +4,6 @@ export interface Product {
   quantity: number;
   unitPrice: number;
   description?: string;
-  // imageUrl?: string;
   createdAt: Date;
   updatedAt: Date;
 }

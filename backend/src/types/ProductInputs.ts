@@ -1,6 +1,15 @@
-import { InputType, Field, Int, Float } from 'type-graphql';
-import { IsNotEmpty, IsPositive, Min, MaxLength, IsOptional } from 'class-validator';
-import { PRODUCT_DESCRIPTION_MAX_LENGTH, PRODUCT_NAME_MAX_LENGTH } from '../constants/product';
+import { Field, Float, InputType, Int } from 'type-graphql';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsPositive,
+  MaxLength,
+  Min,
+} from 'class-validator';
+import {
+  PRODUCT_DESCRIPTION_MAX_LENGTH,
+  PRODUCT_NAME_MAX_LENGTH,
+} from '../constants/product';
 
 @InputType()
 export class CreateProductInput {
@@ -25,11 +34,6 @@ export class CreateProductInput {
   @IsOptional()
   @MaxLength(PRODUCT_DESCRIPTION_MAX_LENGTH)
   description?: string;
-
-  // @Field({ nullable: true })
-  // @IsOptional()
-  // @MaxLength(500)
-  // imageUrl?: string;
 }
 
 @InputType()
@@ -56,10 +60,4 @@ export class UpdateProductInput {
   @IsOptional()
   @MaxLength(PRODUCT_DESCRIPTION_MAX_LENGTH)
   description?: string;
-
-  // @Field({ nullable: true })
-  // @IsOptional()
-  // @MaxLength(500)
-  // imageUrl?: string;
 }
-

@@ -9,7 +9,6 @@ export interface CreateProductInput {
   quantity: number;
   unitPrice: number;
   description?: string | null;
-  // imageUrl?: string;
 }
 
 export interface UpdateProductInput {
@@ -17,7 +16,6 @@ export interface UpdateProductInput {
   quantity?: number;
   unitPrice?: number;
   description?: string | null;
-  // imageUrl?: string;
 }
 
 @Injectable({
