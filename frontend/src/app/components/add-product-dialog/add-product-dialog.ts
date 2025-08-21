@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   WritableSignal,
 } from '@angular/core';
@@ -22,6 +23,11 @@ import {
   UNSIGNED_INTEGER_MAX_VALUE,
 } from '../../constants/product';
 import { Message } from 'primeng/message';
+import {
+  CreateProductInput,
+  GraphqlService,
+} from '../../services/graphql.service';
+import { catchError, finalize, of } from 'rxjs';
 
 @Component({
   selector: 'app-add-product-dialog',
@@ -56,6 +62,7 @@ export class AddProductDialogComponent {
       Validators.maxLength(PRODUCT_DESCRIPTION_MAX_LENGTH),
     ]),
   });
+  private readonly graphqlService = inject(GraphqlService);
 
   get show(): boolean {
     return this.visible()();
@@ -72,5 +79,33 @@ export class AddProductDialogComponent {
 
     this.disableAddButton = true;
     this.addButtonLabel = 'Adding...';
+
+    const productInput: CreateProductInput = {
+      name: this.form.controls.name.value!,
+      quantity: this.form.controls.quantity.value!,
+      unitPrice: this.form.controls.unitPrice.value!,
+      description: this.form.controls.description.value || null,
+    };
+
+    this.graphqlService
+      .createProduct(productInput)
+      .pipe(
+        catchError((error) => {
+          console.error('Error creating product:', error);
+          
+          return of(null);
+        }),
+        finalize(() => {
+          this.disableAddButton = false;
+          this.addButtonLabel = 'Add';
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          if (!response) return;
+
+          this.show = false;
+        },
+      });
   }
 }
