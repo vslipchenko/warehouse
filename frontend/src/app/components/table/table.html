@@ -41,7 +41,7 @@
     <tr>
       <td>{{ product.name }}</td>
       <td>{{ product.quantity }}</td>
-      <td>{{ product.unitPrice }}</td>
+      <td>{{ product.unitPrice | currency: 'EUR' }}</td>
       <td class="description-column">{{ product.description }}</td>
       <td>
         <div class="action-buttons">
