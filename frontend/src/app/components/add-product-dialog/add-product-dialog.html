@@ -5,7 +5,7 @@
           [(visible)]="show" (onHide)="resetState()">
   <div class="input-group">
     <label for="name">Name</label>
-    <input pInputText id="name" class="flex-auto" autocomplete="off"
+    <input pInputText id="name" autocomplete="off"
            [invalid]="nameControl.dirty && nameControl.invalid"
            [formControl]="nameControl"/>
 
