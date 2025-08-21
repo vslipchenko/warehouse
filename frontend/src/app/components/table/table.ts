@@ -4,14 +4,18 @@ import {
   input,
   output,
 } from '@angular/core';
-import { TableModule } from 'primeng/table';
+import { Table, TableModule } from 'primeng/table';
 import { Product } from '../../models/product';
 import { Button } from 'primeng/button';
 import { Tooltip } from 'primeng/tooltip';
+import { IconField } from 'primeng/iconfield';
+import { InputIcon } from 'primeng/inputicon';
+import { InputText } from 'primeng/inputtext';
+import { FilterMetadata } from 'primeng/api';
 
 @Component({
   selector: 'app-table',
-  imports: [TableModule, Button, Tooltip],
+  imports: [TableModule, Button, Tooltip, IconField, InputIcon, InputText],
   templateUrl: './table.html',
   styleUrl: './table.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,4 +24,12 @@ export class TableComponent {
   public readonly products = input.required<Array<Product>>();
   public readonly editProduct = output<Product>();
   public readonly deleteProduct = output<Product>();
+
+  protected tableGlobalValue(table: Table<Product>): unknown {
+    return (table.filters['global'] as FilterMetadata)?.value || null;
+  }
+
+  protected filterProducts(table: Table<Product>, event: Event): void {
+    table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+  }
 }

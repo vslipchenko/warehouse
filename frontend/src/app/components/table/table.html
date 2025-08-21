@@ -1,9 +1,27 @@
 <p-table
+  #table
   [value]="products()"
   [paginator]="true"
   [rows]="10"
   [rowsPerPageOptions]="[5, 10, 15, 20]"
+  [globalFilterFields]="['name', 'quantity', 'unitPrice', 'description']"
 >
+  <ng-template #caption>
+    <div class="caption">
+      <p-iconfield iconPosition="left">
+        <p-inputicon>
+          <i class="pi pi-search"></i>
+        </p-inputicon>
+        <input
+          pInputText
+          type="text"
+          [value]="tableGlobalValue(table)"
+          (input)="filterProducts(table, $event)"
+          placeholder="Search"
+        />
+      </p-iconfield>
+    </div>
+  </ng-template>
   <ng-template #header>
     <tr>
       <th style="width:25%">Name</th>
@@ -43,7 +61,7 @@
   </ng-template>
   <ng-template #emptymessage>
     <tr>
-      <td colspan="100%" class="empty-message">No products at the moment. Consider adding a new one.</td>
+      <td colspan="100%" class="empty-message">No products.</td>
     </tr>
   </ng-template>
 </p-table>
