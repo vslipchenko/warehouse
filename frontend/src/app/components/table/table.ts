@@ -7,7 +7,7 @@ import {IconField} from 'primeng/iconfield';
 import {InputIcon} from 'primeng/inputicon';
 import {InputText} from 'primeng/inputtext';
 import {FilterMetadata} from 'primeng/api';
-import {CurrencyPipe} from '@angular/common';
+import {CurrencyPipe, DecimalPipe} from '@angular/common';
 
 @Component({
   selector: 'app-table',
@@ -19,6 +19,7 @@ import {CurrencyPipe} from '@angular/common';
     InputIcon,
     InputText,
     CurrencyPipe,
+    DecimalPipe,
   ],
   templateUrl: './table.html',
   styleUrl: './table.scss',
