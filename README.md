@@ -1,6 +1,6 @@
 # Warehouse Management System
 
-A modern, full-stack warehouse management application built with Angular frontend and Node.js/GraphQL backend, featuring a MariaDB database.
+A modern, full-stack warehouse application for managing products (using CRUD operations) built with Angular frontend and Node.js/GraphQL backend, featuring a MariaDB database.
 
 ## 🏗️ Architecture
 
@@ -54,7 +54,19 @@ docker-compose up -d
 docker-compose -f docker-compose.dev.yml up -d
 ```
 
-```
+## 🔐 Database Credentials
+
+### Default Database Configuration
+
+The application uses MariaDB with the following default credentials:
+
+**Database Connection Details:**
+- **Host**: `localhost` (or `database` when connecting from within Docker containers)
+- **Port**: `3306`
+- **Database Name**: `warehouse`
+- **Username**: `warehouse`
+- **Password**: `warehousepassword`
+- **Root Password**: `rootpassword`
 
 ## 🧪 Testing
 
