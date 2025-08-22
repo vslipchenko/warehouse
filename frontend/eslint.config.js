@@ -190,7 +190,6 @@ module.exports = [
   // Angular template files
   {
     files: ['src/**/*.html'],
-    ignores: ['src/app/components/footer/footer.html'], // Simple static HTML, no Angular template logic
     languageOptions: {
       parser: angularTemplateParser,
       parserOptions: {
