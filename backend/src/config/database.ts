@@ -1,5 +1,4 @@
 import {DataSource} from 'typeorm';
-import {Product} from '../entities/Product';
 
 export const AppDataSource = new DataSource({
   type: 'mariadb',
@@ -8,9 +7,11 @@ export const AppDataSource = new DataSource({
   username: process.env['DB_USERNAME'] || 'warehouse',
   password: process.env['DB_PASSWORD'] || 'warehousepassword',
   database: process.env['DB_DATABASE'] || 'warehouse',
-  synchronize: true,
-  logging: process.env['NODE_ENV'] === 'development',
-  entities: [Product],
-  migrations: ['src/migrations/**/*.ts'],
-  subscribers: ['src/subscribers/**/*.ts'],
+  logging: process.env['NODE_ENV'] !== 'production',
+  entities: process.env['NODE_ENV'] === 'production' 
+    ? ['dist/entities/**/*.js'] 
+    : ['src/entities/**/*.ts'],
+  migrations: process.env['NODE_ENV'] === 'production' 
+  ? ['dist/migrations/**/*.js']
+  : ['src/migrations/**/*.ts'],
 });

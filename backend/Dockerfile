@@ -23,6 +23,6 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node healthcheck.js
 
-# Start the application
-CMD ["npm", "run", "start"]
+# Start the application with migration support
+CMD ["sh", "-c", "npm run migration:run && npm run start"]
 
