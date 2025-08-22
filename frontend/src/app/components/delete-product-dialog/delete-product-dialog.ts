@@ -56,7 +56,7 @@ export class DeleteProductDialogComponent {
         finalize(() => {
           this.loading.set(false);
         })
-      )
+        )
       .subscribe({
         next: (response) => {
           if (!response) return;

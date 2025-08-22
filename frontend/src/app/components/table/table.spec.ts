@@ -14,30 +14,30 @@ describe('TableComponent', () => {
       unitPrice: 25.99,
       description: 'Description 1',
       createdAt: new Date('2023-01-01'),
-      updatedAt: new Date('2023-01-01')
+      updatedAt: new Date('2023-01-01'),
     },
     {
       id: 2,
       name: 'Product 2',
       quantity: 5,
-      unitPrice: 15.50,
+      unitPrice: 15.5,
       description: 'Description 2',
       createdAt: new Date('2023-01-02'),
-      updatedAt: new Date('2023-01-02')
-    }
+      updatedAt: new Date('2023-01-02'),
+    },
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableComponent]
+      imports: [TableComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
-    
+
     // Provide required input
     fixture.componentRef.setInput('products', mockProducts);
-    
+
     fixture.detectChanges();
   });
 
@@ -64,25 +64,25 @@ describe('TableComponent', () => {
   it('should handle empty products array', () => {
     fixture.componentRef.setInput('products', []);
     fixture.detectChanges();
-    
+
     expect(component.products()).toEqual([]);
   });
 
   it('should emit editProduct event', () => {
     spyOn(component.editProduct, 'emit');
-    
+
     const productToEdit = mockProducts[0];
     component.editProduct.emit(productToEdit);
-    
+
     expect(component.editProduct.emit).toHaveBeenCalledWith(productToEdit);
   });
 
   it('should emit deleteProduct event', () => {
     spyOn(component.deleteProduct, 'emit');
-    
+
     const productToDelete = mockProducts[1];
     component.deleteProduct.emit(productToDelete);
-    
+
     expect(component.deleteProduct.emit).toHaveBeenCalledWith(productToDelete);
   });
 });

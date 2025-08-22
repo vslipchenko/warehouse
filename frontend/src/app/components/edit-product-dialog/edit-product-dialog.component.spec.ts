@@ -17,28 +17,30 @@ describe('EditProductDialogComponent', () => {
     unitPrice: 25.99,
     description: 'Test description',
     createdAt: new Date('2023-01-01'),
-    updatedAt: new Date('2023-01-01')
+    updatedAt: new Date('2023-01-01'),
   };
 
   beforeEach(async () => {
-    const graphqlServiceSpy = jasmine.createSpyObj('GraphqlService', ['updateProduct']);
+    const graphqlServiceSpy = jasmine.createSpyObj('GraphqlService', [
+      'updateProduct',
+    ]);
 
     await TestBed.configureTestingModule({
       imports: [EditProductDialogComponent, ReactiveFormsModule],
-      providers: [
-        { provide: GraphqlService, useValue: graphqlServiceSpy }
-      ]
+      providers: [{ provide: GraphqlService, useValue: graphqlServiceSpy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EditProductDialogComponent);
     component = fixture.componentInstance;
-    mockGraphqlService = TestBed.inject(GraphqlService) as jasmine.SpyObj<GraphqlService>;
-    
+    mockGraphqlService = TestBed.inject(
+      GraphqlService
+    ) as jasmine.SpyObj<GraphqlService>;
+
     // Provide required inputs
     const visibleSignal = signal(false);
     fixture.componentRef.setInput('visible', visibleSignal);
     fixture.componentRef.setInput('product', mockProduct);
-    
+
     fixture.detectChanges();
   });
 

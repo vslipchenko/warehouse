@@ -7,15 +7,15 @@ describe('HeadlineComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeadlineComponent]
+      imports: [HeadlineComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeadlineComponent);
     component = fixture.componentInstance;
-    
+
     // Provide required input
     fixture.componentRef.setInput('addProductButtonDisabled', false);
-    
+
     fixture.detectChanges();
   });
 
@@ -37,23 +37,23 @@ describe('HeadlineComponent', () => {
 
   it('should emit addProduct event', () => {
     spyOn(component.addProduct, 'emit');
-    
+
     component.addProduct.emit();
-    
+
     expect(component.addProduct.emit).toHaveBeenCalled();
   });
 
   it('should handle disabled state correctly', () => {
     fixture.componentRef.setInput('addProductButtonDisabled', true);
     fixture.detectChanges();
-    
+
     expect(component.addProductButtonDisabled()).toBe(true);
   });
 
   it('should handle enabled state correctly', () => {
     fixture.componentRef.setInput('addProductButtonDisabled', false);
     fixture.detectChanges();
-    
+
     expect(component.addProductButtonDisabled()).toBe(false);
   });
 });

@@ -7,16 +7,16 @@ describe('ErrorBannerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ErrorBannerComponent]
+      imports: [ErrorBannerComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ErrorBannerComponent);
     component = fixture.componentInstance;
-    
+
     // Provide required inputs
     fixture.componentRef.setInput('visible', true);
     fixture.componentRef.setInput('message', 'Test error message');
-    
+
     fixture.detectChanges();
   });
 
@@ -43,12 +43,12 @@ describe('ErrorBannerComponent', () => {
   it('should handle visible state changes', () => {
     fixture.componentRef.setInput('visible', false);
     fixture.detectChanges();
-    
+
     expect(component.visible()).toBe(false);
-    
+
     fixture.componentRef.setInput('visible', true);
     fixture.detectChanges();
-    
+
     expect(component.visible()).toBe(true);
   });
 
@@ -56,7 +56,7 @@ describe('ErrorBannerComponent', () => {
     const newMessage = 'Updated error message';
     fixture.componentRef.setInput('message', newMessage);
     fixture.detectChanges();
-    
+
     expect(component.message()).toBe(newMessage);
   });
 });

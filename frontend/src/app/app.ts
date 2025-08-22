@@ -81,7 +81,7 @@ export class AppComponent {
 
           return of({ data: { products: [] } });
         })
-      )
+        )
       .subscribe({
         next: (response) => {
           if (!response?.data?.products) return;

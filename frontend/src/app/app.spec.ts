@@ -9,20 +9,24 @@ describe('AppComponent', () => {
   let mockGraphqlService: jasmine.SpyObj<GraphqlService>;
 
   beforeEach(async () => {
-    const graphqlServiceSpy = jasmine.createSpyObj('GraphqlService', ['getProducts']);
-    graphqlServiceSpy.getProducts.and.returnValue(of({ data: { products: [] } }));
+    const graphqlServiceSpy = jasmine.createSpyObj('GraphqlService', [
+      'getProducts',
+    ]);
+    graphqlServiceSpy.getProducts.and.returnValue(
+      of({ data: { products: [] } })
+    );
 
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [
-        { provide: GraphqlService, useValue: graphqlServiceSpy }
-      ]
+      providers: [{ provide: GraphqlService, useValue: graphqlServiceSpy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-    mockGraphqlService = TestBed.inject(GraphqlService) as jasmine.SpyObj<GraphqlService>;
-    
+    mockGraphqlService = TestBed.inject(
+      GraphqlService
+    ) as jasmine.SpyObj<GraphqlService>;
+
     fixture.detectChanges();
   });
 
