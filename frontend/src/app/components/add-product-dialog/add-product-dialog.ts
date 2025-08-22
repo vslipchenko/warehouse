@@ -19,9 +19,9 @@ import {
 } from '@angular/forms';
 import {
   DECIMAL_MAX_VALUE,
+  INTEGER_MAX_VALUE,
   PRODUCT_DESCRIPTION_MAX_LENGTH,
   PRODUCT_NAME_MAX_LENGTH,
-  UNSIGNED_INTEGER_MAX_VALUE,
 } from '../../constants/product';
 import {Message} from 'primeng/message';
 import {
@@ -54,15 +54,15 @@ export class AddProductDialogComponent {
   protected readonly error = signal(false);
   protected readonly nameMaxLength = PRODUCT_NAME_MAX_LENGTH;
   protected readonly descriptionMaxLength = PRODUCT_DESCRIPTION_MAX_LENGTH;
-  protected readonly quantityMaxValue = UNSIGNED_INTEGER_MAX_VALUE;
+  protected readonly quantityMaxValue = INTEGER_MAX_VALUE;
   protected readonly unitPriceMaxValue = DECIMAL_MAX_VALUE;
   protected readonly form = new FormGroup({
     name: new FormControl('', [
       Validators.required,
       Validators.maxLength(PRODUCT_NAME_MAX_LENGTH),
     ]),
-    quantity: new FormControl(0),
-    unitPrice: new FormControl(0),
+    quantity: new FormControl(0, [Validators.required]),
+    unitPrice: new FormControl(0, [Validators.required]),
     description: new FormControl('', [
       Validators.maxLength(PRODUCT_DESCRIPTION_MAX_LENGTH),
     ]),
