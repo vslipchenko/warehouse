@@ -2,6 +2,7 @@
   "name": "warehouse-api",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "node dist/bin/www.js",
     "dev": "nodemon src/bin/www.ts",
@@ -33,8 +34,8 @@
     "@types/jest": "^30.0.0",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.2.1",
-    "@typescript-eslint/eslint-plugin": "^8.39.1",
-    "@typescript-eslint/parser": "^8.39.1",
+    "@typescript-eslint/eslint-plugin": "^8.40.0",
+    "@typescript-eslint/parser": "^8.40.0",
     "eslint": "^9.33.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^10.1.8",
