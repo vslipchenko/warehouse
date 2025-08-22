@@ -31,6 +31,8 @@ cd warehouse
 # Select production or development environment by submiting corresponding numbers.
 
 # Once the setup is finished, the app will open in a new browser tab. If the page doesn’t load immediately, please wait until the frontend finishes compiling.
+
+# Send Ctrl + C in the terminal window once finished to shutdown the project.
 ```
 
 The setup script will:
