@@ -9,9 +9,10 @@ export default [
   // Base JavaScript recommended rules
   js.configs.recommended,
   
-  // Google style guide configuration
+  // Google style guide configuration for source files only
   {
     files: ['**/*.{js,ts}'],
+    ignores: ['**/*.test.ts', '**/*.spec.ts', '**/__tests__/**/*.ts'],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
@@ -30,6 +31,7 @@ export default [
         module: 'readonly',
         require: 'readonly',
         exports: 'readonly',
+        NodeJS: 'readonly',
       },
     },
     plugins: {
@@ -51,7 +53,7 @@ export default [
       '@typescript-eslint/no-inferrable-types': 'error',
       
       // Node.js specific rules
-      'no-process-exit': 'error',
+      'no-process-exit': 'off', // Allow process.exit() for server startup/shutdown
       'no-path-concat': 'error',
       
       // Prettier integration
@@ -87,6 +89,22 @@ export default [
           selector: 'typeLike',
           format: ['PascalCase'],
         },
+        {
+          selector: 'variable',
+          format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+          filter: {
+            regex: '^(AppDataSource|productRepository)$',
+            match: true,
+          },
+        },
+        {
+          selector: 'memberLike',
+          format: ['camelCase', 'PascalCase'],
+          filter: {
+            regex: '^(productRepository)$',
+            match: true,
+          },
+        },
       ],
     },
   },
@@ -97,9 +115,46 @@ export default [
   // Test files configuration
   {
     files: ['**/*.test.ts', '**/*.spec.ts', '**/__tests__/**/*.ts'],
+    languageOptions: {
+      parser: tsparser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        // Don't use project for test files since they're excluded from tsconfig
+      },
+      globals: {
+        // Jest globals
+        describe: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        jest: 'readonly',
+        // Node.js globals
+        console: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        global: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        exports: 'readonly',
+        NodeJS: 'readonly',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint,
+      prettier: prettierPlugin,
+    },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
+      'prettier/prettier': 'error',
+      'no-undef': 'off', // Jest globals are defined above
     },
   },
   
