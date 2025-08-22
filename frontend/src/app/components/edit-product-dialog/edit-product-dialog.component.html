@@ -1,4 +1,6 @@
 @let nameControl = form.controls.name;
+@let quantityControl = form.controls.quantity;
+@let unitPriceControl = form.controls.unitPrice;
 @let descriptionControl = form.controls.description;
 
 <p-dialog
@@ -17,7 +19,6 @@
       [invalid]="nameControl.dirty && nameControl.invalid"
       [formControl]="nameControl"
     />
-
     @if (nameControl.dirty && nameControl.invalid) {
       <p-message
         severity="error"
@@ -30,7 +31,7 @@
         }
         @if (nameControl.hasError('maxlength')) {
           Name length must not exceed {{ nameMaxLength }} characters (currently
-          - {{ nameControl.value?.length }}).
+            - {{ nameControl.value?.length }}).
         }
       </p-message>
     }
@@ -47,7 +48,7 @@
       pinnerMode="horizontal"
       [step]="1"
       mode="decimal"
-      [formControl]="form.controls.quantity"
+      [formControl]="quantityControl"
     >
       <ng-template #incrementbuttonicon>
         <span class="pi pi-plus"></span>
@@ -56,6 +57,18 @@
         <span class="pi pi-minus"></span>
       </ng-template>
     </p-inputnumber>
+    @if (quantityControl.dirty && quantityControl.invalid) {
+      <p-message
+        severity="error"
+        size="small"
+        variant="simple"
+        class="error-message"
+      >
+        @if (quantityControl.hasError('required')) {
+          Quantity is required.
+        }
+      </p-message>
+    }
   </div>
 
   <div class="input-group">
@@ -67,8 +80,20 @@
       locale="en-US"
       [min]="0"
       [max]="unitPriceMaxValue"
-      [formControl]="form.controls.unitPrice"
+      [formControl]="unitPriceControl"
     />
+    @if (unitPriceControl.dirty && unitPriceControl.invalid) {
+      <p-message
+        severity="error"
+        size="small"
+        variant="simple"
+        class="error-message"
+      >
+        @if (unitPriceControl.hasError('required')) {
+          Unit Price is required.
+        }
+      </p-message>
+    }
   </div>
 
   <div class="input-group">
@@ -78,7 +103,7 @@
       id="description"
       rows="5"
       cols="30"
-      [formControl]="form.controls.description"
+      [formControl]="descriptionControl"
     ></textarea>
     @if (descriptionControl.dirty && descriptionControl.invalid) {
       <p-message
