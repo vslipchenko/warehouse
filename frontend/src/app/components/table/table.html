@@ -45,7 +45,7 @@
   <ng-template #body let-product>
     <tr>
       <td>{{ product.name }}</td>
-      <td>{{ product.quantity }}</td>
+      <td>{{ product.quantity | number }}</td>
       <td>{{ product.unitPrice | currency: 'EUR' }}</td>
       <td class="description-column">{{ product.description }}</td>
       <td>
