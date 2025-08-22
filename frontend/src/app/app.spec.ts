@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppComponent } from './app';
-import { GraphqlService } from './services/graphql.service';
-import { of } from 'rxjs';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {AppComponent} from './app';
+import {GraphqlService} from './services/graphql.service';
+import {of} from 'rxjs';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -12,13 +12,11 @@ describe('AppComponent', () => {
     const graphqlServiceSpy = jasmine.createSpyObj('GraphqlService', [
       'getProducts',
     ]);
-    graphqlServiceSpy.getProducts.and.returnValue(
-      of({ data: { products: [] } })
-    );
+    graphqlServiceSpy.getProducts.and.returnValue(of({data: {products: []}}));
 
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [{ provide: GraphqlService, useValue: graphqlServiceSpy }],
+      providers: [{provide: GraphqlService, useValue: graphqlServiceSpy}],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);

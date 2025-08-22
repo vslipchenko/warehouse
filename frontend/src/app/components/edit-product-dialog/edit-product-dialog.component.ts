@@ -7,10 +7,10 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { Button } from 'primeng/button';
-import { Dialog } from 'primeng/dialog';
-import { ErrorBannerComponent } from '../error-banner/error-banner';
-import { Product } from '../../models/product';
+import {Button} from 'primeng/button';
+import {Dialog} from 'primeng/dialog';
+import {ErrorBannerComponent} from '../error-banner/error-banner';
+import {Product} from '../../models/product';
 import {
   FormControl,
   FormGroup,
@@ -18,10 +18,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputNumber } from 'primeng/inputnumber';
-import { InputText } from 'primeng/inputtext';
-import { Message } from 'primeng/message';
-import { Textarea } from 'primeng/textarea';
+import {InputNumber} from 'primeng/inputnumber';
+import {InputText} from 'primeng/inputtext';
+import {Message} from 'primeng/message';
+import {Textarea} from 'primeng/textarea';
 import {
   DECIMAL_MAX_VALUE,
   PRODUCT_DESCRIPTION_MAX_LENGTH,
@@ -32,8 +32,8 @@ import {
   GraphqlService,
   UpdateProductInput,
 } from '../../services/graphql.service';
-import { untilDestroyed } from '../../utilities/operator';
-import { catchError, finalize, of } from 'rxjs';
+import {untilDestroyed} from '../../utilities/operator';
+import {catchError, finalize, of} from 'rxjs';
 
 @Component({
   selector: 'app-edit-product-dialog',
@@ -99,12 +99,12 @@ export class EditProductDialogComponent {
     this.error.set(false);
     this.loading.set(true);
 
-    const { id } = this.product();
+    const {id} = this.product();
     const updateProductInput: UpdateProductInput = {
       name: this.form.controls.name.value!,
       quantity: this.form.controls.quantity.value!,
       unitPrice: this.form.controls.unitPrice.value!,
-      description: this.form.controls.description.value || null,
+      description: this.form.controls.description.value ?? null,
     };
 
     this.graphqlService
@@ -123,7 +123,7 @@ export class EditProductDialogComponent {
 
           this.loading.set(false);
         })
-        )
+      )
       .subscribe({
         next: (response) => {
           if (!response) return;

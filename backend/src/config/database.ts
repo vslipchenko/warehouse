@@ -1,5 +1,5 @@
-import { DataSource } from 'typeorm';
-import { Product } from '../entities/Product';
+import {DataSource} from 'typeorm';
+import {Product} from '../entities/Product';
 
 export const AppDataSource = new DataSource({
   type: 'mariadb',

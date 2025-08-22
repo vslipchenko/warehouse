@@ -1,24 +1,41 @@
-<app-toolbar/>
+<app-toolbar />
 
 <main class="content">
-  <app-headline [addProductButtonDisabled]="loading()" (addProduct)="openAddProductDialog()"/>
-  <app-add-product-dialog [visible]="showAddProductDialog"/>
-  <app-edit-product-dialog [visible]="showEditProductDialog" [product]="affectedProduct()"/>
-  <app-delete-product-dialog [visible]="showDeleteProductDialog" [product]="affectedProduct()"/>
+  <app-headline
+    [addProductButtonDisabled]="loading()"
+    (addProduct)="openAddProductDialog()"
+  />
+  <app-add-product-dialog [visible]="showAddProductDialog" />
+  <app-edit-product-dialog
+    [visible]="showEditProductDialog"
+    [product]="affectedProduct()"
+  />
+  <app-delete-product-dialog
+    [visible]="showDeleteProductDialog"
+    [product]="affectedProduct()"
+  />
 
   @if (loading()) {
-    <p-progress-spinner ariaLabel="Loading products..." class="spinner"/>
+  <p-progress-spinner ariaLabel="Loading products..." class="spinner" />
   } @else if (error()) {
-    <app-error-banner [visible]="true"
-                      message="Can't load the products. Please retry loading the products or try again later.">
-      <p-button label="Retry" icon="pi pi-undo" iconPos="left" (click)="loadProducts()"></p-button>
-    </app-error-banner>
+  <app-error-banner
+    [visible]="true"
+    message="Can't load the products. Please retry loading the products or try again later."
+  >
+    <p-button
+      label="Retry"
+      icon="pi pi-undo"
+      iconPos="left"
+      (click)="loadProducts()"
+    ></p-button>
+  </app-error-banner>
   } @else {
-    <app-table [products]="products()" (editProduct)="openEditProductDialog($event)"
-               (deleteProduct)="confirmDeletion($event)"/>
+  <app-table
+    [products]="products()"
+    (editProduct)="openEditProductDialog($event)"
+    (deleteProduct)="confirmDeletion($event)"
+  />
   }
 </main>
 
-<app-footer/>
-
-
+<app-footer />

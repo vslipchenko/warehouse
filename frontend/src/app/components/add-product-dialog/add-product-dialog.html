@@ -1,31 +1,52 @@
-@let nameControl = form.controls.name;
-@let descriptionControl = form.controls.description;
+@let nameControl = form.controls.name; @let descriptionControl =
+form.controls.description;
 
-<p-dialog [style]="{ 'min-width': '35vw' }" header="Add Product" [modal]="true" [draggable]="false"
-          [(visible)]="show" (onHide)="resetState()">
+<p-dialog
+  [style]="{ 'min-width': '35vw' }"
+  header="Add Product"
+  [modal]="true"
+  [draggable]="false"
+  [(visible)]="show"
+  (onHide)="resetState()"
+>
   <div class="input-group">
     <label for="name">Name</label>
-    <input pInputText id="name" autocomplete="off"
-           [invalid]="nameControl.dirty && nameControl.invalid"
-           [formControl]="nameControl"/>
+    <input
+      pInputText
+      id="name"
+      autocomplete="off"
+      [invalid]="nameControl.dirty && nameControl.invalid"
+      [formControl]="nameControl"
+    />
 
     @if (nameControl.dirty && nameControl.invalid) {
-      <p-message severity="error" size="small" variant="simple" class="error-message">
-        @if (nameControl.hasError('required')) {
-          Name is required.
-        }
-        @if (nameControl.hasError('maxlength')) {
-          Name length must not exceed {{ nameMaxLength }} characters (currently - {{ nameControl.value?.length }}).
-        }
-      </p-message>
+    <p-message
+      severity="error"
+      size="small"
+      variant="simple"
+      class="error-message"
+    >
+      @if (nameControl.hasError('required')) { Name is required. } @if
+      (nameControl.hasError('maxlength')) { Name length must not exceed {{
+      nameMaxLength }} characters (currently - {{ nameControl.value?.length }}).
+      }
+    </p-message>
     }
   </div>
 
   <div class="input-group">
     <label for="quantity">Quantity</label>
-    <p-inputnumber [showButtons]="true" buttonLayout="horizontal" inputId="quantity" [min]="0" [max]="quantityMaxValue"
-                   pinnerMode="horizontal"
-                   [step]="1" mode="decimal" [formControl]="form.controls.quantity">
+    <p-inputnumber
+      [showButtons]="true"
+      buttonLayout="horizontal"
+      inputId="quantity"
+      [min]="0"
+      [max]="quantityMaxValue"
+      pinnerMode="horizontal"
+      [step]="1"
+      mode="decimal"
+      [formControl]="form.controls.quantity"
+    >
       <ng-template #incrementbuttonicon>
         <span class="pi pi-plus"></span>
       </ng-template>
@@ -37,26 +58,55 @@
 
   <div class="input-group">
     <label for="unitPrice">Unit Price</label>
-    <p-inputnumber inputId="unitPrice" mode="currency" currency="EUR" locale="en-US" [min]="0" [max]="unitPriceMaxValue"
-                   [formControl]="form.controls.unitPrice"/>
+    <p-inputnumber
+      inputId="unitPrice"
+      mode="currency"
+      currency="EUR"
+      locale="en-US"
+      [min]="0"
+      [max]="unitPriceMaxValue"
+      [formControl]="form.controls.unitPrice"
+    />
   </div>
 
   <div class="input-group">
     <label for="description">Description</label>
-    <textarea pTextarea id="description" rows="5" cols="30" [formControl]="form.controls.description"></textarea>
+    <textarea
+      pTextarea
+      id="description"
+      rows="5"
+      cols="30"
+      [formControl]="form.controls.description"
+    ></textarea>
     @if (descriptionControl.dirty && descriptionControl.invalid) {
-      <p-message severity="error" size="small" variant="simple" class="error-message">
-        @if (descriptionControl.hasError('maxlength')) {
-          Description length must not exceed {{ descriptionMaxLength }} characters (currently - {{ descriptionControl.value?.length }}).
-        }
-      </p-message>
+    <p-message
+      severity="error"
+      size="small"
+      variant="simple"
+      class="error-message"
+    >
+      @if (descriptionControl.hasError('maxlength')) { Description length must
+      not exceed {{ descriptionMaxLength }} characters (currently - {{
+      descriptionControl.value?.length }}). }
+    </p-message>
     }
   </div>
 
-  <app-error-banner [visible]="error()" message="Can't add the product. Please try again later."/>
+  <app-error-banner
+    [visible]="error()"
+    message="Can't add the product. Please try again later."
+  />
 
   <div class="action-buttons">
-    <p-button label="Close" severity="secondary" (click)="visible().set(false)"/>
-    <p-button [label]="loading() ? 'Adding...' : 'Add'" (click)="addProduct()" [disabled]="loading()"/>
+    <p-button
+      label="Close"
+      severity="secondary"
+      (click)="visible().set(false)"
+    />
+    <p-button
+      [label]="loading() ? 'Adding...' : 'Add'"
+      (click)="addProduct()"
+      [disabled]="loading()"
+    />
   </div>
 </p-dialog>

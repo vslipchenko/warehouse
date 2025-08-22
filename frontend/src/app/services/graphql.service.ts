@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { gql } from '@apollo/client/core';
-import { Observable } from 'rxjs';
-import { Product } from '../models/product';
+import {Injectable} from '@angular/core';
+import {Apollo} from 'apollo-angular';
+import {gql} from '@apollo/client/core';
+import {Observable} from 'rxjs';
+import {Product} from '../models/product';
 
 export interface CreateProductInput {
   name: string;
@@ -27,7 +27,7 @@ export class GraphqlService {
   /**
    * Get all products
    */
-  getProducts(): Observable<{ data: { products: Product[] } }> {
+  getProducts(): Observable<{data: {products: Product[]}}> {
     const GET_PRODUCTS = gql`
       query GetProducts {
         products {
@@ -42,7 +42,7 @@ export class GraphqlService {
       }
     `;
 
-    return this.apollo.watchQuery<{ products: Product[] }>({
+    return this.apollo.watchQuery<{products: Product[]}>({
       query: GET_PRODUCTS,
     }).valueChanges;
   }
@@ -67,7 +67,7 @@ export class GraphqlService {
 
     return this.apollo.mutate({
       mutation: CREATE_PRODUCT,
-      variables: { input },
+      variables: {input},
       refetchQueries: ['GetProducts'],
     });
   }
@@ -92,7 +92,7 @@ export class GraphqlService {
 
     return this.apollo.mutate({
       mutation: UPDATE_PRODUCT,
-      variables: { id, input },
+      variables: {id, input},
       refetchQueries: ['GetProducts'],
     });
   }
@@ -109,7 +109,7 @@ export class GraphqlService {
 
     return this.apollo.mutate({
       mutation: DELETE_PRODUCT,
-      variables: { id },
+      variables: {id},
       refetchQueries: ['GetProducts'],
     });
   }

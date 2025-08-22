@@ -6,14 +6,14 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { Button } from 'primeng/button';
-import { Dialog } from 'primeng/dialog';
-import { FormsModule } from '@angular/forms';
-import { GraphqlService } from '../../services/graphql.service';
-import { untilDestroyed } from '../../utilities/operator';
-import { catchError, finalize, of } from 'rxjs';
-import { Product } from '../../models/product';
-import { ErrorBannerComponent } from '../error-banner/error-banner';
+import {Button} from 'primeng/button';
+import {Dialog} from 'primeng/dialog';
+import {FormsModule} from '@angular/forms';
+import {GraphqlService} from '../../services/graphql.service';
+import {untilDestroyed} from '../../utilities/operator';
+import {catchError, finalize, of} from 'rxjs';
+import {Product} from '../../models/product';
+import {ErrorBannerComponent} from '../error-banner/error-banner';
 
 @Component({
   selector: 'app-delete-product-dialog',
@@ -56,7 +56,7 @@ export class DeleteProductDialogComponent {
         finalize(() => {
           this.loading.set(false);
         })
-        )
+      )
       .subscribe({
         next: (response) => {
           if (!response) return;

@@ -1,10 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  output,
-} from '@angular/core';
-import { Button } from 'primeng/button';
+import {ChangeDetectionStrategy, Component, input, output} from '@angular/core';
+import {Button} from 'primeng/button';
 
 @Component({
   selector: 'app-headline',

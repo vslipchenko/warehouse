@@ -4,19 +4,19 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { ToolbarComponent } from './components/toolbar/toolbar';
-import { TableComponent } from './components/table/table';
-import { FooterComponent } from './components/footer/footer';
-import { HeadlineComponent } from './components/headline/headline';
-import { AddProductDialogComponent } from './components/add-product-dialog/add-product-dialog';
-import { GraphqlService } from './services/graphql.service';
-import { catchError, of, tap } from 'rxjs';
-import { Product } from './models/product';
-import { ProgressSpinner } from 'primeng/progressspinner';
-import { ErrorBannerComponent } from './components/error-banner/error-banner';
-import { Button } from 'primeng/button';
-import { DeleteProductDialogComponent } from './components/delete-product-dialog/delete-product-dialog';
-import { EditProductDialogComponent } from './components/edit-product-dialog/edit-product-dialog.component';
+import {ToolbarComponent} from './components/toolbar/toolbar';
+import {TableComponent} from './components/table/table';
+import {FooterComponent} from './components/footer/footer';
+import {HeadlineComponent} from './components/headline/headline';
+import {AddProductDialogComponent} from './components/add-product-dialog/add-product-dialog';
+import {GraphqlService} from './services/graphql.service';
+import {catchError, of, tap} from 'rxjs';
+import {Product} from './models/product';
+import {ProgressSpinner} from 'primeng/progressspinner';
+import {ErrorBannerComponent} from './components/error-banner/error-banner';
+import {Button} from 'primeng/button';
+import {DeleteProductDialogComponent} from './components/delete-product-dialog/delete-product-dialog';
+import {EditProductDialogComponent} from './components/edit-product-dialog/edit-product-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -79,9 +79,9 @@ export class AppComponent {
 
           this.error.set(true);
 
-          return of({ data: { products: [] } });
+          return of({data: {products: []}});
         })
-        )
+      )
       .subscribe({
         next: (response) => {
           if (!response?.data?.products) return;

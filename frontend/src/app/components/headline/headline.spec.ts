@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HeadlineComponent } from './headline';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {HeadlineComponent} from './headline';
 
 describe('HeadlineComponent', () => {
   let component: HeadlineComponent;

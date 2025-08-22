@@ -1,5 +1,11 @@
 <div class="headline">
   <h2>Products</h2>
-  <p-button class="add-product" label="Add Product" icon="pi pi-plus" iconPos="left" (click)="addProduct.emit()"
-            [disabled]="addProductButtonDisabled()"/>
+  <p-button
+    class="add-product"
+    label="Add Product"
+    icon="pi pi-plus"
+    iconPos="left"
+    (click)="addProduct.emit()"
+    [disabled]="addProductButtonDisabled()"
+  />
 </div>

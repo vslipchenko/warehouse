@@ -6,11 +6,11 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { Dialog } from 'primeng/dialog';
-import { Button } from 'primeng/button';
-import { InputText } from 'primeng/inputtext';
-import { Textarea } from 'primeng/textarea';
-import { InputNumber } from 'primeng/inputnumber';
+import {Dialog} from 'primeng/dialog';
+import {Button} from 'primeng/button';
+import {InputText} from 'primeng/inputtext';
+import {Textarea} from 'primeng/textarea';
+import {InputNumber} from 'primeng/inputnumber';
 import {
   FormControl,
   FormGroup,
@@ -23,14 +23,14 @@ import {
   PRODUCT_NAME_MAX_LENGTH,
   UNSIGNED_INTEGER_MAX_VALUE,
 } from '../../constants/product';
-import { Message } from 'primeng/message';
+import {Message} from 'primeng/message';
 import {
   CreateProductInput,
   GraphqlService,
 } from '../../services/graphql.service';
-import { catchError, finalize, of } from 'rxjs';
-import { untilDestroyed } from '../../utilities/operator';
-import { ErrorBannerComponent } from '../error-banner/error-banner';
+import {catchError, finalize, of} from 'rxjs';
+import {untilDestroyed} from '../../utilities/operator';
+import {ErrorBannerComponent} from '../error-banner/error-banner';
 
 @Component({
   selector: 'app-add-product-dialog',
@@ -92,7 +92,7 @@ export class AddProductDialogComponent {
       name: this.form.controls.name.value!,
       quantity: this.form.controls.quantity.value!,
       unitPrice: this.form.controls.unitPrice.value!,
-      description: this.form.controls.description.value || null,
+      description: this.form.controls.description.value ?? null,
     };
 
     this.graphqlService
@@ -111,7 +111,7 @@ export class AddProductDialogComponent {
 
           this.loading.set(false);
         })
-        )
+      )
       .subscribe({
         next: (response) => {
           if (!response) return;

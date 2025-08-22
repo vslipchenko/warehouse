@@ -1,7 +1,7 @@
-import { Resolver, Query, Mutation, Arg, ID } from 'type-graphql';
-import { AppDataSource } from '../config/database';
-import { Product } from '../entities/Product';
-import { CreateProductInput, UpdateProductInput } from '../types/ProductInputs';
+import {Resolver, Query, Mutation, Arg, ID} from 'type-graphql';
+import {AppDataSource} from '../config/database';
+import {Product} from '../entities/Product';
+import {CreateProductInput, UpdateProductInput} from '../types/ProductInputs';
 
 @Resolver(() => Product)
 export class ProductResolver {
@@ -10,7 +10,7 @@ export class ProductResolver {
   @Query(() => [Product])
   async products(): Promise<Product[]> {
     return this.productRepository.find({
-      order: { createdAt: 'DESC' },
+      order: {createdAt: 'DESC'},
     });
   }
 
@@ -27,7 +27,7 @@ export class ProductResolver {
     @Arg('id', () => ID) id: number,
     @Arg('input') input: UpdateProductInput
   ): Promise<Product> {
-    const product = await this.productRepository.findOne({ where: { id } });
+    const product = await this.productRepository.findOne({where: {id}});
 
     if (!product) {
       throw new Error(`Product with ID ${id} not found`);
