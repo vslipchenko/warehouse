@@ -1,5 +1,5 @@
-import { validate } from 'class-validator';
-import { Product } from '../../entities/Product';
+import {validate} from 'class-validator';
+import {Product} from '../../entities/Product';
 import {
   PRODUCT_NAME_MAX_LENGTH,
   PRODUCT_DESCRIPTION_MAX_LENGTH,

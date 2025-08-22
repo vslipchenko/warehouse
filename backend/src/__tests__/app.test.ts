@@ -1,4 +1,4 @@
-import { createApp } from '../app';
+import {createApp} from '../app';
 
 describe('Express Application', () => {
   describe('Application Structure', () => {

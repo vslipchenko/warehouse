@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { signal } from '@angular/core';
-import { DeleteProductDialogComponent } from './delete-product-dialog';
-import { GraphqlService } from '../../services/graphql.service';
-import { Product } from '../../models/product';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {signal} from '@angular/core';
+import {DeleteProductDialogComponent} from './delete-product-dialog';
+import {GraphqlService} from '../../services/graphql.service';
+import {Product} from '../../models/product';
 
 describe('DeleteProductDialogComponent', () => {
   let component: DeleteProductDialogComponent;
@@ -26,7 +26,7 @@ describe('DeleteProductDialogComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [DeleteProductDialogComponent],
-      providers: [{ provide: GraphqlService, useValue: graphqlServiceSpy }],
+      providers: [{provide: GraphqlService, useValue: graphqlServiceSpy}],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DeleteProductDialogComponent);

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TableComponent } from './table';
-import { Product } from '../../models/product';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {TableComponent} from './table';
+import {Product} from '../../models/product';
 
 describe('TableComponent', () => {
   let component: TableComponent;

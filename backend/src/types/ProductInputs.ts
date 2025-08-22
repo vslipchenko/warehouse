@@ -1,4 +1,4 @@
-import { Field, Float, InputType, Int } from 'type-graphql';
+import {Field, Float, InputType, Int} from 'type-graphql';
 import {
   IsNotEmpty,
   IsOptional,
@@ -30,7 +30,7 @@ export class CreateProductInput {
   @Min(0)
   unitPrice!: number;
 
-  @Field({ nullable: true })
+  @Field({nullable: true})
   @IsOptional()
   @MaxLength(PRODUCT_DESCRIPTION_MAX_LENGTH)
   description?: string;
@@ -38,25 +38,25 @@ export class CreateProductInput {
 
 @InputType()
 export class UpdateProductInput {
-  @Field({ nullable: true })
+  @Field({nullable: true})
   @IsOptional()
   @IsNotEmpty()
   @MaxLength(PRODUCT_NAME_MAX_LENGTH)
   name?: string;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Int, {nullable: true})
   @IsOptional()
   @IsPositive()
   @Min(0)
   quantity?: number;
 
-  @Field(() => Float, { nullable: true })
+  @Field(() => Float, {nullable: true})
   @IsOptional()
   @IsPositive()
   @Min(0)
   unitPrice?: number;
 
-  @Field({ nullable: true })
+  @Field({nullable: true})
   @IsOptional()
   @MaxLength(PRODUCT_DESCRIPTION_MAX_LENGTH)
   description?: string;

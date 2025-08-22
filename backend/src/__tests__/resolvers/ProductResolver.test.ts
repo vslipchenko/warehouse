@@ -1,4 +1,4 @@
-import { ProductResolver } from '../../resolvers/ProductResolver';
+import {ProductResolver} from '../../resolvers/ProductResolver';
 import {
   CreateProductInput,
   UpdateProductInput,

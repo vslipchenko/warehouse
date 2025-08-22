@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ErrorBannerComponent } from './error-banner';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ErrorBannerComponent} from './error-banner';
 
 describe('ErrorBannerComponent', () => {
   let component: ErrorBannerComponent;

@@ -23,18 +23,23 @@
         />
       </p-iconfield>
 
-      <p-button severity="secondary" icon="pi pi-external-link" label="Export" (click)="table.exportCSV()"
-                pTooltip="Export CSV"
-                tooltipPosition="left"/>
+      <p-button
+        severity="secondary"
+        icon="pi pi-external-link"
+        label="Export"
+        (click)="table.exportCSV()"
+        pTooltip="Export CSV"
+        tooltipPosition="left"
+      />
     </div>
   </ng-template>
   <ng-template #header>
     <tr>
-      <th style="width:25%">Name</th>
-      <th style="width:15%">Quantity</th>
-      <th style="width:25%">Unit Price</th>
-      <th style="width:30%">Description</th>
-      <th style="width:5%">Actions</th>
+      <th style="width: 25%">Name</th>
+      <th style="width: 15%">Quantity</th>
+      <th style="width: 25%">Unit Price</th>
+      <th style="width: 30%">Description</th>
+      <th style="width: 5%">Actions</th>
     </tr>
   </ng-template>
   <ng-template #body let-product>
@@ -51,7 +56,8 @@
             size="small"
             (click)="editProduct.emit(product)"
             pTooltip="Edit Product"
-            tooltipPosition="left">
+            tooltipPosition="left"
+          >
           </p-button>
           <p-button
             icon="pi pi-trash"
@@ -59,7 +65,8 @@
             size="small"
             (click)="deleteProduct.emit(product)"
             pTooltip="Delete Product"
-            tooltipPosition="left">
+            tooltipPosition="left"
+          >
           </p-button>
         </div>
       </td>

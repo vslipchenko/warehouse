@@ -2,11 +2,11 @@ import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@as-integrations/express5';
-import { buildSchema } from 'type-graphql';
-import { AppDataSource } from './config/database';
-import { ProductResolver } from './resolvers/ProductResolver';
+import {ApolloServer} from '@apollo/server';
+import {expressMiddleware} from '@as-integrations/express5';
+import {buildSchema} from 'type-graphql';
+import {AppDataSource} from './config/database';
+import {ProductResolver} from './resolvers/ProductResolver';
 
 /**
  * Creates and configures the Express application
@@ -45,13 +45,13 @@ export async function createApp(): Promise<express.Application> {
     cors(),
     express.json(),
     expressMiddleware(server, {
-      context: async () => ({ dataSource: AppDataSource }),
+      context: async () => ({dataSource: AppDataSource}),
     })
   );
 
   // Health check endpoint
   app.get('/health', (_req, res) => {
-    res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
+    res.status(200).json({status: 'OK', timestamp: new Date().toISOString()});
   });
 
   return app;

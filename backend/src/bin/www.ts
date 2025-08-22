@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { Server } from 'http';
-import { createApp } from '../app';
+import {Server} from 'http';
+import {createApp} from '../app';
 import dotenv from 'dotenv';
 
 // Load environment variables

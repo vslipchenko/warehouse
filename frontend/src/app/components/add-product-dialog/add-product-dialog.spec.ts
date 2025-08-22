@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { signal } from '@angular/core';
-import { AddProductDialogComponent } from './add-product-dialog';
-import { GraphqlService } from '../../services/graphql.service';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ReactiveFormsModule} from '@angular/forms';
+import {signal} from '@angular/core';
+import {AddProductDialogComponent} from './add-product-dialog';
+import {GraphqlService} from '../../services/graphql.service';
 
 describe('AddProductDialogComponent', () => {
   let component: AddProductDialogComponent;
@@ -16,7 +16,7 @@ describe('AddProductDialogComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [AddProductDialogComponent, ReactiveFormsModule],
-      providers: [{ provide: GraphqlService, useValue: graphqlServiceSpy }],
+      providers: [{provide: GraphqlService, useValue: graphqlServiceSpy}],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddProductDialogComponent);

@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { validate } from 'class-validator';
+import {validate} from 'class-validator';
 import {
   CreateProductInput,
   UpdateProductInput,

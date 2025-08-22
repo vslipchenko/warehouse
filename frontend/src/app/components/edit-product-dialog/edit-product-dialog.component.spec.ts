@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { signal } from '@angular/core';
-import { EditProductDialogComponent } from './edit-product-dialog.component';
-import { GraphqlService } from '../../services/graphql.service';
-import { Product } from '../../models/product';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ReactiveFormsModule} from '@angular/forms';
+import {signal} from '@angular/core';
+import {EditProductDialogComponent} from './edit-product-dialog.component';
+import {GraphqlService} from '../../services/graphql.service';
+import {Product} from '../../models/product';
 
 describe('EditProductDialogComponent', () => {
   let component: EditProductDialogComponent;
@@ -27,7 +27,7 @@ describe('EditProductDialogComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [EditProductDialogComponent, ReactiveFormsModule],
-      providers: [{ provide: GraphqlService, useValue: graphqlServiceSpy }],
+      providers: [{provide: GraphqlService, useValue: graphqlServiceSpy}],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EditProductDialogComponent);

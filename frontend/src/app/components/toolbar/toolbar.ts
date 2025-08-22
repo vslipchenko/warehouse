@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Toolbar } from 'primeng/toolbar';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Toolbar} from 'primeng/toolbar';
 
 @Component({
   selector: 'app-toolbar',

@@ -1,5 +1,5 @@
-import { DestroyRef, inject } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import {DestroyRef, inject} from '@angular/core';
+import {Subject, takeUntil} from 'rxjs';
 
 export const untilDestroyed = () => {
   const destroyed$ = new Subject<void>();
