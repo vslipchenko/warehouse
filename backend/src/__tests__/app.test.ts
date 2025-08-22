@@ -21,7 +21,9 @@ describe('Express Application', () => {
         expect(typeof app.post).toBe('function');
       } catch (error) {
         // Database connection might fail in test environment
-        console.log('App creation failed due to database connection, which is expected in test environment');
+        console.log(
+          'App creation failed due to database connection, which is expected in test environment'
+        );
         expect(error).toBeDefined();
       }
     });

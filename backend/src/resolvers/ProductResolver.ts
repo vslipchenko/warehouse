@@ -28,7 +28,7 @@ export class ProductResolver {
     @Arg('input') input: UpdateProductInput
   ): Promise<Product> {
     const product = await this.productRepository.findOne({ where: { id } });
-    
+
     if (!product) {
       throw new Error(`Product with ID ${id} not found`);
     }
@@ -43,4 +43,3 @@ export class ProductResolver {
     return result.affected !== 0;
   }
 }
-
