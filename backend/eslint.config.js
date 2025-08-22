@@ -1,25 +1,36 @@
-import js from '@eslint/js';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import tsparser from '@typescript-eslint/parser';
-import googleConfig from 'eslint-config-google';
-import prettierConfig from 'eslint-config-prettier';
-import prettierPlugin from 'eslint-plugin-prettier';
+const js = require('@eslint/js');
+const tseslint = require('@typescript-eslint/eslint-plugin');
+const tsparser = require('@typescript-eslint/parser');
+const googleConfig = require('eslint-config-google');
+const prettierConfig = require('eslint-config-prettier');
+const prettierPlugin = require('eslint-plugin-prettier');
 
-export default [
+module.exports = [
+  // Ignore patterns (should be first)
+  {
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      'coverage/**',
+      '*.min.js',
+      '*.bundle.js',
+    ],
+  },
+  
   // Base JavaScript recommended rules
   js.configs.recommended,
   
   // Google style guide configuration for source files only
   {
-    files: ['**/*.{js,ts}'],
-    ignores: ['**/*.test.ts', '**/*.spec.ts', '**/__tests__/**/*.ts'],
+    files: ['src/**/*.{js,ts}'],
+    ignores: ['src/**/*.test.ts', 'src/**/*.spec.ts', 'src/__tests__/**/*.ts'],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
         project: './tsconfig.json',
-        tsconfigRootDir: import.meta.dirname,
+        tsconfigRootDir: __dirname,
       },
       globals: {
         console: 'readonly',
@@ -59,11 +70,11 @@ export default [
       // Prettier integration
       'prettier/prettier': 'error',
       
-             // Override some Google rules for better TypeScript support
-       'valid-jsdoc': 'off', // TypeScript handles this better
-       'require-jsdoc': 'off', // TypeScript handles this better
-       'camelcase': 'off', // TypeScript handles this better
-       'new-cap': 'off', // Conflicts with TypeScript decorators and class names
+      // Override some Google rules for better TypeScript support
+      'valid-jsdoc': 'off', // TypeScript handles this better
+      'require-jsdoc': 'off', // TypeScript handles this better
+      'camelcase': 'off', // TypeScript handles this better
+      'new-cap': 'off', // Conflicts with TypeScript decorators and class names
       '@typescript-eslint/naming-convention': [
         'error',
         {
@@ -114,7 +125,7 @@ export default [
   
   // Test files configuration
   {
-    files: ['**/*.test.ts', '**/*.spec.ts', '**/__tests__/**/*.ts'],
+    files: ['src/**/*.test.ts', 'src/**/*.spec.ts', 'src/__tests__/**/*.ts'],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
@@ -156,16 +167,5 @@ export default [
       'prettier/prettier': 'error',
       'no-undef': 'off', // Jest globals are defined above
     },
-  },
-  
-  // Ignore patterns
-  {
-    ignores: [
-      'dist/**',
-      'node_modules/**',
-      'coverage/**',
-      '*.min.js',
-      '*.bundle.js',
-    ],
   },
 ];
