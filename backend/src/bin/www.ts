@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { Server } from 'http';
 import { createApp } from '../app';
 import dotenv from 'dotenv';
 
@@ -53,7 +54,7 @@ function onError(error: NodeJS.ErrnoException, port: number | string): void {
 /**
  * Event listener for HTTP server "listening" event
  */
-function onListening(server: any): void {
+function onListening(server: Server): void {
   const addr = server.address();
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port;
   console.log('Server listening on ' + bind);
