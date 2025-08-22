@@ -25,10 +25,16 @@ The fastest and most convenient way to get started is using our automated setup 
 git clone <repository-url>
 cd warehouse
 
-# Run setup script - setup.sh
+# Run setup script (located in the root folder)
+./setup.sh
+
+# Select production or development environment by submiting corresponding numbers.
+
+# Once the setup is finished, the app will open in a new browser tab. If the page doesn’t load immediately, please wait until the frontend finishes compiling.
 ```
 
 The setup script will:
+
 - ✅ Check Docker installation
 - 🎯 Let you choose between Production or Development environment
 - 🐳 Automatically build and start all services
@@ -61,6 +67,7 @@ docker-compose -f docker-compose.dev.yml up -d
 The application uses MariaDB with the following default credentials:
 
 **Database Connection Details:**
+
 - **Host**: `localhost` (or `database` when connecting from within Docker containers)
 - **Port**: `3306`
 - **Database Name**: `warehouse`
@@ -180,5 +187,6 @@ chmod +x scripts/*.sh
 ## 🆘 Support
 
 For issues and questions:
+
 - Review the test files for usage examples
 - Check the GraphQL playground for API documentation
