@@ -1,5 +1,8 @@
 import { ProductResolver } from '../../resolvers/ProductResolver';
-import { CreateProductInput, UpdateProductInput } from '../../types/ProductInputs';
+import {
+  CreateProductInput,
+  UpdateProductInput,
+} from '../../types/ProductInputs';
 
 describe('ProductResolver', () => {
   let resolver: ProductResolver;

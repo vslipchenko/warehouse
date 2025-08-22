@@ -65,18 +65,22 @@ function onListening(server: any): void {
 async function startServer(): Promise<void> {
   try {
     const app = await createApp();
-    
+
     // Get port from environment and store in Express
     const port = normalizePort(process.env['PORT'] || '3000');
     app.set('port', port);
 
     // Create HTTP server
     const server = app.listen(port as number);
-    server.on('error', (error: NodeJS.ErrnoException) => onError(error, port as number | string));
+    server.on('error', (error: NodeJS.ErrnoException) =>
+      onError(error, port as number | string)
+    );
     server.on('listening', () => onListening(server));
-    
+
     console.log(`🚀 Server ready at http://localhost:${port}`);
-    console.log(`🚀 GraphQL endpoint ready at http://localhost:${port}/graphql`);
+    console.log(
+      `🚀 GraphQL endpoint ready at http://localhost:${port}/graphql`
+    );
   } catch (error) {
     console.error('Failed to start server:', error);
     process.exit(1);
@@ -84,4 +88,3 @@ async function startServer(): Promise<void> {
 }
 
 startServer();
-

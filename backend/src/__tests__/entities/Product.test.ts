@@ -1,6 +1,9 @@
 import { validate } from 'class-validator';
 import { Product } from '../../entities/Product';
-import { PRODUCT_NAME_MAX_LENGTH, PRODUCT_DESCRIPTION_MAX_LENGTH } from '../../constants/product';
+import {
+  PRODUCT_NAME_MAX_LENGTH,
+  PRODUCT_DESCRIPTION_MAX_LENGTH,
+} from '../../constants/product';
 
 describe('Product Entity', () => {
   let product: Product;
@@ -27,7 +30,7 @@ describe('Product Entity', () => {
 
       const errors = await validate(product);
       expect(errors.length).toBeGreaterThan(0);
-      const nameError = errors.find(e => e.property === 'name');
+      const nameError = errors.find((e) => e.property === 'name');
       expect(nameError?.property).toBe('name');
       expect(nameError?.constraints).toHaveProperty('isNotEmpty');
     });
@@ -39,7 +42,7 @@ describe('Product Entity', () => {
 
       const errors = await validate(product);
       expect(errors.length).toBeGreaterThan(0);
-      const nameError = errors.find(e => e.property === 'name');
+      const nameError = errors.find((e) => e.property === 'name');
       expect(nameError?.property).toBe('name');
       expect(nameError?.constraints).toHaveProperty('maxLength');
     });
@@ -51,7 +54,7 @@ describe('Product Entity', () => {
 
       const errors = await validate(product);
       expect(errors.length).toBeGreaterThan(0);
-      const quantityError = errors.find(e => e.property === 'quantity');
+      const quantityError = errors.find((e) => e.property === 'quantity');
       expect(quantityError?.property).toBe('quantity');
       expect(quantityError?.constraints).toHaveProperty('min');
     });
@@ -63,7 +66,7 @@ describe('Product Entity', () => {
 
       const errors = await validate(product);
       expect(errors.length).toBeGreaterThan(0);
-      const quantityError = errors.find(e => e.property === 'quantity');
+      const quantityError = errors.find((e) => e.property === 'quantity');
       expect(quantityError?.property).toBe('quantity');
       expect(quantityError?.constraints).toHaveProperty('isPositive');
     });
@@ -75,7 +78,7 @@ describe('Product Entity', () => {
 
       const errors = await validate(product);
       expect(errors.length).toBeGreaterThan(0);
-      const unitPriceError = errors.find(e => e.property === 'unitPrice');
+      const unitPriceError = errors.find((e) => e.property === 'unitPrice');
       expect(unitPriceError?.property).toBe('unitPrice');
       expect(unitPriceError?.constraints).toHaveProperty('min');
     });
@@ -87,7 +90,7 @@ describe('Product Entity', () => {
 
       const errors = await validate(product);
       expect(errors.length).toBeGreaterThan(0);
-      const unitPriceError = errors.find(e => e.property === 'unitPrice');
+      const unitPriceError = errors.find((e) => e.property === 'unitPrice');
       expect(unitPriceError?.property).toBe('unitPrice');
       expect(unitPriceError?.constraints).toHaveProperty('isPositive');
     });
@@ -113,7 +116,7 @@ describe('Product Entity', () => {
       const errors = await validate(product);
       // The description field validation fails when undefined, so we expect at least 1 error
       expect(errors.length).toBeGreaterThan(0);
-      const descriptionError = errors.find(e => e.property === 'description');
+      const descriptionError = errors.find((e) => e.property === 'description');
       expect(descriptionError?.property).toBe('description');
     });
 
@@ -201,7 +204,7 @@ describe('Product Entity', () => {
       const errors = await validate(product);
       // The description field validation fails when undefined, so we expect at least 1 error
       expect(errors.length).toBeGreaterThan(0);
-      const descriptionError = errors.find(e => e.property === 'description');
+      const descriptionError = errors.find((e) => e.property === 'description');
       expect(descriptionError?.property).toBe('description');
     });
 

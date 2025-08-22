@@ -1,7 +1,13 @@
 import 'reflect-metadata';
 import { validate } from 'class-validator';
-import { CreateProductInput, UpdateProductInput } from '../../types/ProductInputs';
-import { PRODUCT_NAME_MAX_LENGTH, PRODUCT_DESCRIPTION_MAX_LENGTH } from '../../constants/product';
+import {
+  CreateProductInput,
+  UpdateProductInput,
+} from '../../types/ProductInputs';
+import {
+  PRODUCT_NAME_MAX_LENGTH,
+  PRODUCT_DESCRIPTION_MAX_LENGTH,
+} from '../../constants/product';
 
 describe('CreateProductInput', () => {
   let input: CreateProductInput;
@@ -122,9 +128,9 @@ describe('CreateProductInput', () => {
     it('should fail validation with missing required fields', async () => {
       const errors = await validate(input);
       expect(errors.length).toBeGreaterThan(0);
-      expect(errors.some(e => e.property === 'name')).toBe(true);
-      expect(errors.some(e => e.property === 'quantity')).toBe(true);
-      expect(errors.some(e => e.property === 'unitPrice')).toBe(true);
+      expect(errors.some((e) => e.property === 'name')).toBe(true);
+      expect(errors.some((e) => e.property === 'quantity')).toBe(true);
+      expect(errors.some((e) => e.property === 'unitPrice')).toBe(true);
     });
   });
 
