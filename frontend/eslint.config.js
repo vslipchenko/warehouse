@@ -155,6 +155,9 @@ module.exports = [
       'require-jsdoc': 'off', // TypeScript handles this better
       'camelcase': 'off', // TypeScript handles this better
       'new-cap': 'off', // Conflicts with TypeScript decorators and class names
+      'max-len': 'off', // Let Prettier handle line length
+      'indent': 'off', // Let Prettier handle indentation
+      'comma-dangle': 'off', // Let Prettier handle trailing commas
       '@typescript-eslint/naming-convention': [
         'error',
         {
@@ -174,7 +177,7 @@ module.exports = [
           selector: 'memberLike',
           modifiers: ['private'],
           format: ['camelCase'],
-          leadingUnderscore: 'require',
+          leadingUnderscore: 'allow',
         },
         {
           selector: 'typeLike',
@@ -187,6 +190,7 @@ module.exports = [
   // Angular template files
   {
     files: ['src/**/*.html'],
+    ignores: ['src/app/components/footer/footer.html'], // Simple static HTML, no Angular template logic
     languageOptions: {
       parser: angularTemplateParser,
       parserOptions: {
@@ -204,7 +208,7 @@ module.exports = [
       // Template-specific rules
       '@angular-eslint/template/banana-in-box': 'error',
       '@angular-eslint/template/cyclomatic-complexity': 'error',
-      '@angular-eslint/template/no-call-expression': 'error',
+      '@angular-eslint/template/no-call-expression': 'off', // Too strict for Angular templates
       '@angular-eslint/template/no-negated-async': 'error',
       '@angular-eslint/template/use-track-by-function': 'error',
     },
