@@ -111,7 +111,7 @@ export class AddProductDialogComponent {
 
           this.loading.set(false);
         })
-      )
+        )
       .subscribe({
         next: (response) => {
           if (!response) return;

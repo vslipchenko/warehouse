@@ -7,7 +7,7 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FooterComponent]
+      imports: [FooterComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);
@@ -23,9 +23,11 @@ describe('FooterComponent', () => {
     it('should be a simple presentational component', () => {
       // This component should be a simple presentational component
       // with no inputs, outputs, or complex logic
-      
+
       // Should not have any methods beyond the basic component lifecycle
-      const componentKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(component));
+      const componentKeys = Object.getOwnPropertyNames(
+        Object.getPrototypeOf(component)
+      );
       const expectedKeys = ['constructor'];
       expect(componentKeys).toEqual(jasmine.arrayContaining(expectedKeys));
     });
@@ -80,17 +82,17 @@ describe('FooterComponent', () => {
       fixture.detectChanges();
       fixture.detectChanges();
       fixture.detectChanges();
-      
+
       expect(component).toBeTruthy();
     });
 
     it('should render consistently', () => {
       // The component should render the same way every time
       const firstRender = fixture.nativeElement.innerHTML;
-      
+
       fixture.detectChanges();
       const secondRender = fixture.nativeElement.innerHTML;
-      
+
       expect(firstRender).toBe(secondRender);
     });
   });

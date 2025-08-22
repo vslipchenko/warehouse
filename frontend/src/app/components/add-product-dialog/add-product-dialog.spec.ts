@@ -10,23 +10,25 @@ describe('AddProductDialogComponent', () => {
   let mockGraphqlService: jasmine.SpyObj<GraphqlService>;
 
   beforeEach(async () => {
-    const graphqlServiceSpy = jasmine.createSpyObj('GraphqlService', ['createProduct']);
+    const graphqlServiceSpy = jasmine.createSpyObj('GraphqlService', [
+      'createProduct',
+    ]);
 
     await TestBed.configureTestingModule({
       imports: [AddProductDialogComponent, ReactiveFormsModule],
-      providers: [
-        { provide: GraphqlService, useValue: graphqlServiceSpy }
-      ]
+      providers: [{ provide: GraphqlService, useValue: graphqlServiceSpy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddProductDialogComponent);
     component = fixture.componentInstance;
-    mockGraphqlService = TestBed.inject(GraphqlService) as jasmine.SpyObj<GraphqlService>;
-    
+    mockGraphqlService = TestBed.inject(
+      GraphqlService
+    ) as jasmine.SpyObj<GraphqlService>;
+
     // Provide required input
     const visibleSignal = signal(false);
     fixture.componentRef.setInput('visible', visibleSignal);
-    
+
     fixture.detectChanges();
   });
 

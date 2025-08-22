@@ -7,7 +7,7 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToolbarComponent]
+      imports: [ToolbarComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarComponent);
@@ -23,9 +23,11 @@ describe('ToolbarComponent', () => {
     it('should be a simple presentational component', () => {
       // This component should be a simple presentational component
       // with no inputs, outputs, or complex logic
-      
+
       // Should not have any methods beyond the basic component lifecycle
-      const componentKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(component));
+      const componentKeys = Object.getOwnPropertyNames(
+        Object.getPrototypeOf(component)
+      );
       const expectedKeys = ['constructor'];
       expect(componentKeys).toEqual(jasmine.arrayContaining(expectedKeys));
     });
@@ -80,7 +82,7 @@ describe('ToolbarComponent', () => {
       fixture.detectChanges();
       fixture.detectChanges();
       fixture.detectChanges();
-      
+
       expect(component).toBeTruthy();
     });
   });

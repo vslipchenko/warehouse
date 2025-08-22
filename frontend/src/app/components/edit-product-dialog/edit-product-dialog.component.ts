@@ -99,7 +99,7 @@ export class EditProductDialogComponent {
     this.error.set(false);
     this.loading.set(true);
 
-    const id = this.product().id;
+    const { id } = this.product();
     const updateProductInput: UpdateProductInput = {
       name: this.form.controls.name.value!,
       quantity: this.form.controls.quantity.value!,
@@ -123,7 +123,7 @@ export class EditProductDialogComponent {
 
           this.loading.set(false);
         })
-      )
+        )
       .subscribe({
         next: (response) => {
           if (!response) return;
