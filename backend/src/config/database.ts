@@ -8,10 +8,12 @@ export const AppDataSource = new DataSource({
   password: process.env['DB_PASSWORD'] || 'warehousepassword',
   database: process.env['DB_DATABASE'] || 'warehouse',
   logging: process.env['NODE_ENV'] !== 'production',
-  entities: process.env['NODE_ENV'] === 'production' 
-    ? ['dist/entities/**/*.js'] 
-    : ['src/entities/**/*.ts'],
-  migrations: process.env['NODE_ENV'] === 'production' 
-  ? ['dist/migrations/**/*.js']
-  : ['src/migrations/**/*.ts'],
+  entities:
+    process.env['NODE_ENV'] === 'production'
+      ? ['dist/entities/**/*.js']
+      : ['src/entities/**/*.ts'],
+  migrations:
+    process.env['NODE_ENV'] === 'production'
+      ? ['dist/migrations/**/*.js']
+      : ['src/migrations/**/*.ts'],
 });
