@@ -10,31 +10,19 @@ dotenv.config();
 /**
  * Normalize a port into a number, string, or false
  */
-function normalizePort(val: string): number | string | false {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
+const normalizePort = (port: string): number => {
+  return parseInt(port, 10);
+};
 
 /**
  * Event listener for HTTP server "error" event
  */
-function onError(error: NodeJS.ErrnoException, port: number | string): void {
+const onError = (error: NodeJS.ErrnoException, port: number): void => {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+  const bind = 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -49,21 +37,21 @@ function onError(error: NodeJS.ErrnoException, port: number | string): void {
     default:
       throw error;
   }
-}
+};
 
 /**
  * Event listener for HTTP server "listening" event
  */
-function onListening(server: Server): void {
+const onListening = (server: Server): void => {
   const addr = server.address();
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port;
   console.log('Server listening on ' + bind);
-}
+};
 
 /**
  * Start the server
  */
-async function startServer(): Promise<void> {
+const startServer = async (): Promise<void> => {
   try {
     const app = await createApp();
 
@@ -72,10 +60,8 @@ async function startServer(): Promise<void> {
     app.set('port', port);
 
     // Create HTTP server
-    const server = app.listen(port as number);
-    server.on('error', (error: NodeJS.ErrnoException) =>
-      onError(error, port as number | string)
-    );
+    const server = app.listen(port);
+    server.on('error', (error: NodeJS.ErrnoException) => onError(error, port));
     server.on('listening', () => onListening(server));
 
     console.log(`🚀 Server ready at http://localhost:${port}`);
@@ -86,6 +72,6 @@ async function startServer(): Promise<void> {
     console.error('Failed to start server:', error);
     process.exit(1);
   }
-}
+};
 
 startServer();

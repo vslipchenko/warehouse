@@ -11,7 +11,7 @@ import {ProductResolver} from './resolvers/ProductResolver';
 /**
  * Creates and configures the Express application
  */
-export async function createApp(): Promise<express.Application> {
+export const createApp = async (): Promise<express.Application> => {
   const app = express();
 
   // Basic middleware
@@ -55,4 +55,4 @@ export async function createApp(): Promise<express.Application> {
   });
 
   return app;
-}
+};
