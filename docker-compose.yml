@@ -10,7 +10,7 @@ services:
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "3306:3306"
+      - "${DB_PORT}:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
@@ -18,7 +18,7 @@ services:
     networks:
       - warehouse-network
     healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
       start_period: 10s
       interval: 10s
       timeout: 5s
@@ -33,21 +33,21 @@ services:
     restart: unless-stopped
     environment:
       NODE_ENV: ${NODE_ENV}
-      PORT: ${PORT}
+      SERVER_PORT: ${SERVER_PORT}
       DB_HOST: ${DB_HOST}
       DB_PORT: ${DB_PORT}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
     ports:
-      - "3000:3000"
+      - "${SERVER_PORT}:3000"
     depends_on:
       database:
         condition: service_healthy
     networks:
       - warehouse-network
     healthcheck:
-      test: ["CMD", "node", "healthcheck.js"]
+      test: [ "CMD", "node", "healthcheck.js" ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -60,7 +60,7 @@ services:
     container_name: warehouse-app
     restart: unless-stopped
     ports:
-      - "4200:80"
+      - "${CLIENT_PORT}:80"
     depends_on:
       backend:
         condition: service_healthy

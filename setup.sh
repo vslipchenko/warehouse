@@ -29,17 +29,20 @@ case $env_choice in
     1)
         echo "🏭 Starting PRODUCTION environment..."
         compose_file="docker-compose.yml"
-        docker_compose_cmd="docker-compose --env-file backend/.env.production up -d --build"
+        env_file="backend/.env.production"
+        docker_compose_cmd="docker-compose --env-file $env_file -f $compose_file up -d --build"
         ;;
     2)
         echo "🔧 Starting DEVELOPMENT environment..."
         compose_file="docker-compose.dev.yml"
-        docker_compose_cmd="docker-compose --env-file backend/.env.development -f docker-compose.dev.yml up -d --build"
+        env_file="backend/.env.development"
+        docker_compose_cmd="docker-compose --env-file $env_file -f $compose_file up -d --build"
         ;;
     *)
         echo "❌ Invalid choice. Defaulting to production mode."
         compose_file="docker-compose.yml"
-        docker_compose_cmd="docker-compose --env-file backend/.env.production up -d --build"
+        env_file="backend/.env.production"
+        docker_compose_cmd="docker-compose --env-file $env_file -f $compose_file up -d --build"
         ;;
 esac
 
@@ -47,7 +50,7 @@ echo "🐳 Starting services with Docker Compose..."
 eval $docker_compose_cmd
 
 # Check if services are running
-if docker-compose -f $compose_file ps | grep -q "Up"; then
+if docker-compose --env-file $env_file -f $compose_file ps | grep -q "Up"; then
     echo "✅ Services are running!"
     echo ""
     echo "🌐 Application URLs:"
@@ -70,8 +73,8 @@ if docker-compose -f $compose_file ps | grep -q "Up"; then
     fi
 
     echo ""
-    echo "📖 View logs: docker-compose -f $compose_file logs -f"
-    echo "🛑 Stop:      docker-compose -f $compose_file down"
+    echo "📖 View logs: docker-compose --env-file $env_file -f $compose_file logs -f"
+    echo "🛑 Stop:      docker-compose --env-file $env_file -f $compose_file down"
     echo ""
 
     if [ "$env_choice" = "2" ]; then
@@ -81,11 +84,21 @@ if docker-compose -f $compose_file ps | grep -q "Up"; then
     echo "🔄 Monitoring services... Press Ctrl+C to stop and clean up"
 
     # Set up trap to run docker-compose down when script exits
-    trap 'echo ""; echo "🛑 Stopping services..."; docker-compose -f $compose_file down; echo "✅ Services stopped. Goodbye!"; exit 0' INT TERM EXIT
+    trap 'echo ""; echo "🛑 Stopping services..."; docker-compose --env-file $env_file -f $compose_file down; echo "✅ Services stopped. Goodbye!"; exit 0' INT TERM EXIT
 
     # Keep the script running and show logs
-    docker-compose -f $compose_file logs -f
+    docker-compose --env-file $env_file -f $compose_file logs -f
 else
-    echo "❌ Some services failed to start. Check logs with: docker-compose -f $compose_file logs"
+    echo "❌ Some services failed to start. Check logs with: docker-compose --env-file $env_file -f $compose_file logs"
+    echo ""
+    echo "🔍 Debug information:"
+    echo "   Compose file: $compose_file"
+    echo "   Environment file: $env_file"
+    echo "   Docker compose command: $docker_compose_cmd"
+    echo "   Current directory: $(pwd)"
+    echo "   Environment file exists: $([ -f "$env_file" ] && echo "✅ $env_file" || echo "❌ $env_file")"
+    echo ""
+    echo "⏳ Waiting 10 seconds before exiting..."
+    sleep 10
     exit 1
 fi
