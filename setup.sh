@@ -29,17 +29,17 @@ case $env_choice in
     1)
         echo "🏭 Starting PRODUCTION environment..."
         compose_file="docker-compose.yml"
-        docker_compose_cmd="docker-compose up -d --build"
+        docker_compose_cmd="docker-compose --env-file backend/.env.production up -d --build"
         ;;
     2)
         echo "🔧 Starting DEVELOPMENT environment..."
         compose_file="docker-compose.dev.yml"
-        docker_compose_cmd="docker-compose -f docker-compose.dev.yml up -d --build"
+        docker_compose_cmd="docker-compose --env-file backend/.env.development -f docker-compose.dev.yml up -d --build"
         ;;
     *)
         echo "❌ Invalid choice. Defaulting to production mode."
         compose_file="docker-compose.yml"
-        docker_compose_cmd="docker-compose up -d --build"
+        docker_compose_cmd="docker-compose --env-file backend/.env.production up -d --build"
         ;;
 esac
 
@@ -56,7 +56,7 @@ if docker-compose -f $compose_file ps | grep -q "Up"; then
     echo "   Health:      http://localhost:3000/health"
     echo "   Database:    localhost:3306"
     echo ""
-    
+
     # Open browser automatically
     echo "🌐 Opening application in browser..."
     if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -68,21 +68,21 @@ if docker-compose -f $compose_file ps | grep -q "Up"; then
     else
         echo "⚠️  Please visit: http://localhost:4200"
     fi
-    
+
     echo ""
     echo "📖 View logs: docker-compose -f $compose_file logs -f"
     echo "🛑 Stop:      docker-compose -f $compose_file down"
     echo ""
-    
+
     if [ "$env_choice" = "2" ]; then
         echo "💡 Development mode: Changes to source code will automatically reload"
     fi
-    
+
     echo "🔄 Monitoring services... Press Ctrl+C to stop and clean up"
-    
+
     # Set up trap to run docker-compose down when script exits
     trap 'echo ""; echo "🛑 Stopping services..."; docker-compose -f $compose_file down; echo "✅ Services stopped. Goodbye!"; exit 0' INT TERM EXIT
-    
+
     # Keep the script running and show logs
     docker-compose -f $compose_file logs -f
 else

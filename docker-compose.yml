@@ -5,10 +5,10 @@ services:
     container_name: warehouse-db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: warehouse
-      MYSQL_USER: warehouse
-      MYSQL_PASSWORD: warehousepassword
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
@@ -32,13 +32,13 @@ services:
     container_name: warehouse-api
     restart: unless-stopped
     environment:
-      NODE_ENV: production
-      PORT: 3000
-      DB_HOST: database
-      DB_PORT: 3306
-      DB_USERNAME: warehouse
-      DB_PASSWORD: warehousepassword
-      DB_DATABASE: warehouse
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
     ports:
       - "3000:3000"
     depends_on:
