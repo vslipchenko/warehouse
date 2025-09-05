@@ -11,7 +11,7 @@ dotenv.config();
  * Normalize a port into a number, string, or false
  */
 const normalizePort = (port: string): number => {
-  return parseInt(port, 10);
+  return parseInt(port);
 };
 
 /**
