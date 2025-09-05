@@ -56,10 +56,10 @@ git clone <repository-url>
 cd warehouse
 
 # Production environment
-docker-compose up -d
+docker-compose --env-file backend/.env.production up -d
 
 # OR Development environment with hot reload
-docker-compose -f docker-compose.dev.yml up -d
+docker-compose --env-file backend/.env.development -f docker-compose.dev.yml up -d
 ```
 
 ## 🔐 Database Credentials
