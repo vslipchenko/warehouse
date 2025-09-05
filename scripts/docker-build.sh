@@ -16,6 +16,11 @@ fi
 # Navigate to the root directory of the project
 cd ..
 
-# Build images
-docker-compose build --no-cache
-docker-compose -f docker-compose.dev.yml build --no-cache
+# Build images with environment files
+echo "🏭 Building PRODUCTION images..."
+docker-compose --env-file backend/.env.production build --no-cache
+
+echo "🔧 Building DEVELOPMENT images..."
+docker-compose --env-file backend/.env.development -f docker-compose.dev.yml build --no-cache
+
+echo "✅ All images built successfully!"

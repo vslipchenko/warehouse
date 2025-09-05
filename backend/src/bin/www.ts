@@ -3,9 +3,11 @@
 import {Server} from 'http';
 import {createApp} from '../app';
 import dotenv from 'dotenv';
+import path from 'node:path';
 
-// Load environment variables
-dotenv.config();
+// Load environment variables for the current environment
+const environmentName = process.env['NODE_ENV'];
+dotenv.config({path: path.resolve(process.cwd(), `.env.${environmentName}`)});
 
 /**
  * Normalize a port into a number, string, or false
