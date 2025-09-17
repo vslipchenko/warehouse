@@ -1,0 +1,80 @@
+<p-table
+  #table
+  [value]="products()"
+  [columns]="columns"
+  [paginator]="true"
+  [rows]="10"
+  [rowsPerPageOptions]="[5, 10, 15, 20]"
+  [globalFilterFields]="['name', 'quantity', 'unitPrice', 'description']"
+>
+  <ng-template #caption>
+    <div class="caption">
+      <p-iconfield iconPosition="left">
+        <p-inputicon>
+          <i class="pi pi-search"></i>
+        </p-inputicon>
+        <input
+          pInputText
+          type="text"
+          class="search"
+          [value]="tableGlobalValue(table)"
+          (input)="filterProducts(table, $event)"
+          placeholder="Search"
+        />
+      </p-iconfield>
+
+      <p-button
+        severity="secondary"
+        icon="pi pi-external-link"
+        label="Export"
+        (click)="table.exportCSV()"
+        pTooltip="Export CSV"
+        tooltipPosition="left"
+      />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th style="width: 25%">Name</th>
+      <th style="width: 15%">Quantity</th>
+      <th style="width: 25%">Unit Price</th>
+      <th style="width: 30%">Description</th>
+      <th style="width: 5%">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-product>
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.quantity | number }}</td>
+      <td>{{ product.unitPrice | currency: 'EUR' }}</td>
+      <td class="description-column">{{ product.description }}</td>
+      <td>
+        <div class="action-buttons">
+          <p-button
+            icon="pi pi-pencil"
+            severity="secondary"
+            size="small"
+            (click)="editProduct.emit(product)"
+            pTooltip="Edit Product"
+            tooltipPosition="left"
+          >
+          </p-button>
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            size="small"
+            (click)="deleteProduct.emit(product)"
+            pTooltip="Delete Product"
+            tooltipPosition="left"
+          >
+          </p-button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #emptymessage>
+    <tr>
+      <td colspan="100%" class="empty-message">No products.</td>
+    </tr>
+  </ng-template>
+</p-table>

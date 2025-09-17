@@ -1,0 +1,15 @@
+.text {
+  margin-bottom: 15px;
+  max-width: calc(100vw - 56px - var(--p-overlay-modal-padding) * 2);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.error-message {
+  margin-top: 8px;
+}

@@ -1,0 +1,42 @@
+.toolbar {
+  border-radius: 3rem;
+  padding: 1rem 1rem 1rem 1.5rem;
+  margin: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.name {
+  font-size: 1.5rem;
+  color: black;
+}
+
+.social-panel {
+  display: flex;
+  gap: 15px;
+  margin-right: 20px;
+}
+
+.social-logo:not(:hover) {
+  fill: gray;
+}
+
+.social-logo:hover {
+  fill: #10b981;
+}
+
+@media all and (max-width: 450px) {
+  // Do not show social panel on mobile/narrow screen devices
+  .social-panel {
+    display: none;
+  }
+}

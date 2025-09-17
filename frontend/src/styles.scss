@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'primeicons/primeicons.css';
+@use 'tailwindcss';
+
+@plugin "tailwindcss-primeui";
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
